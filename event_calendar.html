@@ -1241,7 +1241,7 @@
                     
                     // Add sample events if API returns empty
                     let finalEvents = events;
-                    if (events.length === 0) {
+                    if (finalEvents.length === 0) {
                         finalEvents = [
                             {
                                 title: 'Sample Event 1',
@@ -1370,24 +1370,24 @@
             function displayEvents() {
                 const eventsList = document.getElementById('eventsList');
                 
-                if (events.length === 0) {
+                if (window.events.length === 0) {
                     eventsList.innerHTML = `
                         <div class="no-events">
                             <p>No upcoming events scheduled.</p>
-                            <p><em>API returned ${events.length} events</em></p>
+                            <p><em>API returned ${window.events.length} events</em></p>
                             <button class="refresh-btn" onclick="loadEvents()">Refresh</button>
                         </div>
                     `;
                     return;
                 }
 
-                const upcomingEvents = events
+                const upcomingEvents = window.events
                     .filter(event => new Date(event.start) >= new Date())
                     .slice(0, 10); // Show next 10 events
                 
                 eventsList.innerHTML = `
                     <div class="events-list">
-                        ${upcomingEvents.map(event => {
+                        ${upcomingEvents.map((event, index) => {
                             const eventDate = new Date(event.start);
                             const day = eventDate.getDate();
                             const month = eventDate.toLocaleDateString('en-US', { month: 'short' }).toUpperCase();
@@ -1435,7 +1435,7 @@
                                         </div>
                                     </div>
                                     <div class="event-actions">
-                                        <button onclick="showEventDetails(${JSON.stringify(event).replace(/"/g, '&quot;')})" class="more-info-btn">MORE INFO</button>
+                                        <button onclick="showEventDetails(${window.events.indexOf(event)})" class="more-info-btn">MORE INFO</button>
                                     </div>
                                 </div>
                             `;
@@ -1483,7 +1483,13 @@
             }
 
             // Event Details Modal Functions
-            function showEventDetails(event) {
+            function showEventDetails(eventIndex) {
+                const event = window.events[eventIndex];
+                if (!event) {
+                    console.error('Event not found at index:', eventIndex);
+                    return;
+                }
+                
                 const modal = document.getElementById('eventModal');
                 const modalTitle = document.getElementById('modalTitle');
                 const modalSubtitle = document.getElementById('modalSubtitle');
