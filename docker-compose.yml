@@ -6,7 +6,6 @@ services:
     container_name: dj-calendar
     ports:
       - "3000:80"
-      - "5000:5000"
     restart: unless-stopped
     environment:
       - FLASK_ENV=production
