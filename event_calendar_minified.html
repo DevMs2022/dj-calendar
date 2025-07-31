@@ -982,11 +982,13 @@
                     // Add sample events if API returns empty
                     let finalEvents = events;
                     if (finalEvents.length === 0) {
+                        const tomorrow = new Date(Date.now() + 24 * 60 * 60 * 1000);
+                        const nextWeek = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000);
                         finalEvents = [
                             {
                                 title: 'Sample Event 1',
-                                start: new Date(Date.now()  24 * 60 * 60 * 1000),
-                                end: new Date(Date.now()  24 * 60 * 60 * 1000  2 * 60 * 60 * 1000),
+                                start: tomorrow,
+                                end: new Date(tomorrow.getTime() + 2 * 60 * 60 * 1000),
                                 location: 'Sample Venue, Berlin, Germany',
                                 description: 'This is a sample event for testing purposes.',
                                 allDay: false,
@@ -995,8 +997,8 @@
                             },
                             {
                                 title: 'Sample Event 2',
-                                start: new Date(Date.now()  7 * 24 * 60 * 60 * 1000),
-                                end: new Date(Date.now()  7 * 24 * 60 * 60 * 1000  3 * 60 * 60 * 1000),
+                                start: nextWeek,
+                                end: new Date(nextWeek.getTime() + 3 * 60 * 60 * 1000),
                                 location: 'Another Venue, Munich, Germany',
                                 description: 'Another sample event to test the display.',
                                 allDay: false,
@@ -1017,7 +1019,7 @@
                 // Build the API URL with parameters
                 const now = new Date();
                 const timeMin = now.toISOString();
-                const timeMax = new Date(now.getTime()  365 * 24 * 60 * 60 * 1000).toISOString(); // 1 year from now
+                const timeMax = new Date(now.getTime() + 365 * 24 * 60 * 60 * 1000).toISOString(); // 1 year from now
                 const url = new URL(`${API_BASE_URL}/calendars/${encodeURIComponent(CALENDAR_ID)}/events`);
                 url.searchParams.append('key', API_KEY);
                 url.searchParams.append('timeMin', timeMin);
