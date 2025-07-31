@@ -69,7 +69,7 @@ docker-compose down
 mkdir -p logs ssl certbot/conf certbot/www
 
 # Update configuration files with your domain
-# Edit docker-compose-https.yml and nginx-https.conf
+# Edit docker-compose-dhttps.yml and nginx-https.conf
 
 # Deploy with HTTPS
 docker-compose -f docker-compose-https.yml up -d
@@ -103,7 +103,7 @@ pip install -r requirements.txt
 ```bash
 python server.py
 ```
-Visit: `http://your-vps-ip:5000`
+Visit: `http://your-vps-ip:3000`
 
 ### 4. Set Up as Service
 ```bash
@@ -128,12 +128,12 @@ Once deployed with Docker, you can embed the calendar in Nicepage using:
 ### **Direct Access (Port 5000):**
 **Option 1: Direct URL**
 ```
-http://your-vps-ip:5000/calendar
+http://your-vps-ip:3000/calendar
 ```
 
 **Option 2: Iframe Embed**
 ```html
-<iframe src="http://your-vps-ip:5000/calendar" width="100%" height="600px" frameborder="0"></iframe>
+<iframe src="http://your-vps-ip:3000/calendar" width="100%" height="600px" frameborder="0"></iframe>
 ```
 
 ### **With NPMplus Proxy (Recommended):**

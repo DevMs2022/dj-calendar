@@ -37,8 +37,8 @@ sleep 5
 # Check if the container is running
 if docker-compose ps | grep -q "Up"; then
     echo "✅ Calendar deployed successfully!"
-    echo "🌐 Access your calendar at: http://$(curl -s ifconfig.me):3000"
-    echo "📅 For Nicepage embed, use: http://$(curl -s ifconfig.me):3000/calendar"
+    echo "🔒 Access your calendar at: https://$(curl -s ifconfig.me):8443"
+    echo "📅 For Nicepage embed, use: https://$(curl -s ifconfig.me):8443/calendar"
     echo ""
     echo "📋 Useful commands:"
     echo "  View logs: docker-compose logs -f"

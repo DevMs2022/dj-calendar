@@ -1,0 +1,15 @@
+[Unit]
+Description=DJ Calendar Web Server
+After=network.target
+
+[Service]
+Type=simple
+User=www-data
+WorkingDirectory=/path/to/your/calendar/files
+Environment=PATH=/path/to/your/calendar/files/venv/bin
+ExecStart=/path/to/your/calendar/files/venv/bin/python server.py
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target 

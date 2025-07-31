@@ -1,0 +1,2794 @@
+﻿<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Technical Rider</title>
+    <style>
+        /* CSS Reset and Override - Ensures complete control over styling */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Override any server CSS */
+        html, body {
+            margin: 0 !important;
+            padding: 0 !important;
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+            line-height: 1.6 !important;
+            color: #ffffff !important;
+            background-color: #000000 !important;
+            scroll-behavior: smooth !important;
+            overflow-x: hidden !important;
+            width: 100vw !important;
+            max-width: 100vw !important;
+        }
+
+        /* CSS Isolation - Create a boundary for our styles */
+        .dj-tech-rider-isolation {
+            position: relative !important;
+            z-index: 9999 !important;
+            isolation: isolate !important;
+            display: block !important;
+            width: 100vw !important;
+            max-width: 100vw !important;
+            min-height: 100vh !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            transform: none !important;
+        }
+
+        /* Force full width container */
+        .container {
+            width: 100vw !important;
+            max-width: 100vw !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            isolation: isolate !important;
+            contain: layout style paint !important;
+            position: relative !important;
+            left: 0 !important;
+            right: 0 !important;
+            transform: none !important;
+        }
+
+        /* Additional body overrides */
+        body {
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+            line-height: 1.6 !important;
+            color: #ffffff !important;
+            background-color: #000000 !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            scroll-behavior: smooth !important;
+            min-height: 100vh !important;
+            position: relative !important;
+            width: 100vw !important;
+            max-width: 100vw !important;
+            overflow-x: hidden !important;
+        }
+
+        /* Override any parent container constraints */
+        .dj-tech-rider-isolation,
+        .dj-tech-rider-isolation *,
+        .container,
+        .container * {
+            max-width: none !important;
+            box-sizing: border-box !important;
+        }
+
+        /* Ensure emojis render properly */
+        * {
+            font-family: 'Inter', 'Segoe UI Emoji', 'Apple Color Emoji', 'Noto Color Emoji', 'Android Emoji', 'EmojiSymbols', 'EmojiOne Mozilla', 'Twemoji Mozilla', 'Segoe UI Symbol', sans-serif !important;
+        }
+
+        /* Force full width on all direct children */
+        .dj-tech-rider-isolation > *,
+        .container > * {
+            width: 100% !important;
+            max-width: 100% !important;
+        }
+
+        /* Override WordPress and theme container constraints */
+        .wp-content,
+        .entry-content,
+        .main-content,
+        .content-area,
+        .site-content,
+        .page-content,
+        [class*="container"],
+        [class*="wrapper"],
+        [class*="content"] {
+            width: 100vw !important;
+            max-width: 100vw !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            transform: none !important;
+        }
+
+        /* Loading animation */
+        .loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease-out;
+        }
+
+        .loading.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid #333;
+            border-top: 3px solid #ffffff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Smooth transitions for all interactive elements */
+        * {
+            transition: all 0.3s ease;
+        }
+
+        /* Scrollbar styling */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #111111;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #333333;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555555;
+        }
+
+        .container {
+            width: 100% !important;
+            max-width: 100% !important;
+            margin: 0 !important;
+            background: #111111 !important;
+            min-height: 100vh !important;
+            position: relative !important;
+            z-index: 1 !important;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #000000 0%, #111111 100%) !important;
+            color: white !important;
+            padding: 3rem 4rem !important;
+            text-align: center !important;
+            border-bottom: 2px solid #ffffff !important;
+            position: relative !important;
+            box-shadow: 0 4px 20px rgba(255, 255, 255, 0.1) !important;
+            z-index: 10 !important;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #ffffff, transparent);
+        }
+
+        .header h1 {
+            font-size: 3rem !important;
+            margin-bottom: 0.5rem !important;
+            font-weight: 200 !important;
+            letter-spacing: 2px !important;
+            text-transform: uppercase !important;
+            animation: fadeInUp 1s ease-out !important;
+            color: #ffffff !important;
+        }
+
+        .header p {
+            font-size: 1.1rem !important;
+            opacity: 0.7 !important;
+            font-weight: 300 !important;
+            letter-spacing: 1px !important;
+            animation: fadeInUp 1s ease-out 0.2s both !important;
+            color: #ffffff !important;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Back to top button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
+        }
+
+        .back-to-top::before {
+            content: '↑';
+            font-size: 20px;
+            color: #ffffff;
+        }
+
+        /* Ripple effect for click feedback */
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(0);
+            animation: ripple-animation 0.6s linear;
+            pointer-events: none;
+        }
+
+        @keyframes ripple-animation {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+
+        /* Keyboard navigation focus styles */
+        .keyboard-navigation *:focus {
+            outline: 2px solid #ffffff !important;
+            outline-offset: 2px !important;
+        }
+
+        /* Enhanced focus styles for better accessibility */
+        .event-tab:focus,
+        .download-btn:focus,
+        .language-btn:focus {
+            outline: 2px solid #ffffff;
+            outline-offset: 2px;
+        }
+
+        /* Improved mobile responsiveness */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .header p {
+                font-size: 1rem;
+            }
+            
+            .event-options {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            .requirements-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            .download-btn {
+                margin: 0.5rem;
+                padding: 0.8rem 1.5rem;
+                font-size: 1rem;
+            }
+            
+            .back-to-top {
+                bottom: 20px;
+                right: 20px;
+                width: 45px;
+                height: 45px;
+            }
+        }
+
+        /* Dark mode optimization */
+        @media (prefers-color-scheme: dark) {
+            body {
+                background-color: #000000;
+            }
+        }
+
+        /* Reduced motion for accessibility */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* CSS Protection Layer - Balanced approach */
+        .dj-tech-rider-isolation {
+            position: relative !important;
+            z-index: 9999 !important;
+            isolation: isolate !important;
+            contain: layout style paint !important;
+        }
+
+        /* Override any external font loading */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600&display=swap');
+
+        /* Ensure proper font family */
+        .dj-tech-rider-isolation * {
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+        }
+
+        .content {
+            padding: 3rem 4rem !important;
+            position: relative !important;
+            z-index: 5 !important;
+            max-width: 100% !important;
+        }
+
+        .section {
+            margin-bottom: 3rem !important;
+            border-left: 2px solid #ffffff !important;
+            padding-left: 2rem !important;
+            position: relative !important;
+            z-index: 1 !important;
+        }
+
+        .section::before {
+            content: '';
+            position: absolute;
+            left: -2px;
+            top: 0;
+            height: 100%;
+            width: 2px;
+            background: linear-gradient(180deg, #ffffff 0%, transparent 100%);
+        }
+
+        .section h2 {
+            color: #ffffff !important;
+            font-size: 1.8rem !important;
+            margin-bottom: 1.5rem !important;
+            font-weight: 300 !important;
+            text-transform: uppercase !important;
+            letter-spacing: 1px !important;
+        }
+
+        .section h3 {
+            color: #cccccc;
+            font-size: 1.3rem;
+            margin: 1.5rem 0 1rem 0;
+            font-weight: 400;
+        }
+
+        .requirements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+
+        .requirement-card {
+            background: linear-gradient(135deg, #1a1a1a 0%, #222222 100%);
+            padding: 2rem;
+            border: 1px solid #333;
+            border-radius: 8px;
+            position: relative;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
+        }
+
+        .requirement-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #ffffff, transparent);
+        }
+
+        .requirement-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .requirement-card:hover::after {
+            left: 100%;
+        }
+
+        .requirement-card:hover {
+            border-color: #ffffff;
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(135deg, #222222 0%, #2a2a2a 100%);
+        }
+
+        .requirement-card h4 {
+            color: #ffffff;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .requirement-card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .requirement-card li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #333;
+            color: #cccccc;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .requirement-card li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: #ffffff;
+            font-weight: bold;
+            width: 1rem;
+            text-align: center;
+        }
+
+        .requirement-card li:last-child {
+            border-bottom: none;
+        }
+
+        .contact-info {
+            background: #1a1a1a;
+            padding: 2rem;
+            border: 1px solid #333;
+            margin-top: 2rem;
+            position: relative;
+        }
+
+        .contact-info::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #ffffff, transparent);
+        }
+
+        .contact-info h3 {
+            color: #ffffff;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 300;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #333;
+        }
+
+        .contact-item:last-child {
+            border-bottom: none;
+        }
+
+        .contact-item strong {
+            color: #ffffff;
+            min-width: 100px;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-size: 0.9rem;
+        }
+
+        .contact-item span {
+            color: #cccccc;
+        }
+
+        .important {
+            background: #1a1a1a;
+            border: 1px solid #ff4444;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            position: relative;
+        }
+
+        .important::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #ff4444, transparent);
+        }
+
+        .important h4 {
+            color: #ff4444;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 400;
+        }
+
+        .important ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .important li {
+            padding: 0.5rem 0;
+            color: #cccccc;
+            border-bottom: 1px solid #333;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .important li::before {
+            content: '!';
+            position: absolute;
+            left: 0;
+            color: #ff4444;
+            font-weight: bold;
+            font-size: 1rem;
+            width: 1rem;
+            text-align: center;
+        }
+
+        .important li:last-child {
+            border-bottom: none;
+        }
+
+        .checklist {
+            background: #1a1a1a;
+            border: 1px solid #00ff00;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            position: relative;
+        }
+
+        .checklist::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #00ff00, transparent);
+        }
+
+        .checklist h4 {
+            color: #00ff00;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 400;
+        }
+
+        .checklist ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .checklist li {
+            padding: 0.5rem 0;
+            color: #cccccc;
+            border-bottom: 1px solid #333;
+            position: relative;
+            padding-left: 1.5rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .checklist li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #00ff00;
+            font-weight: bold;
+            font-size: 1rem;
+            width: 1rem;
+            text-align: center;
+        }
+
+        .checklist li:last-child {
+            border-bottom: none;
+        }
+
+        .download-section {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: center;
+            position: relative;
+        }
+
+        .download-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #ffffff, transparent);
+        }
+
+        .download-btn {
+            background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+            color: #ffffff;
+            border: 2px solid #ffffff;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            margin: 0 1rem;
+            text-decoration: none;
+            display: inline-block;
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden;
+            font-weight: 500;
+        }
+
+        .download-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .download-btn:hover::before {
+            left: 100%;
+        }
+
+        .download-btn:hover {
+            background: linear-gradient(135deg, #ffffff 0%, #f0f0f0 100%);
+            color: #000000;
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 20px rgba(255, 255, 255, 0.3);
+            border-color: #ffffff;
+        }
+
+        .download-btn:active {
+            transform: translateY(-1px) scale(1.02);
+        }
+
+
+
+
+
+        .transport-note {
+            background: #1a1a1a;
+            border: 1px solid #ffaa00;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            position: relative;
+        }
+
+        .transport-note::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #ffaa00, transparent);
+        }
+
+        .transport-note h4 {
+            color: #ffaa00;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 400;
+        }
+
+        .transport-note ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .transport-note li {
+            padding: 0.5rem 0;
+            color: #cccccc;
+            border-bottom: 1px solid #333;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .transport-note li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: #ffaa00;
+            font-size: 1rem;
+            width: 1rem;
+            text-align: center;
+        }
+
+        .transport-note li:last-child {
+            border-bottom: none;
+        }
+
+        .top-controls {
+            background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+            padding: 0;
+            border-bottom: 1px solid #333;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+
+        .event-tabs {
+            display: flex;
+            background: #1a1a1a;
+            border-bottom: 1px solid #333;
+        }
+
+        .event-tab {
+            background: #1a1a1a;
+            color: #cccccc;
+            border: none;
+            padding: 1rem 1.5rem;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-weight: 300;
+            border-right: 1px solid #333;
+            flex: 1;
+            min-width: 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .event-tab::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .event-tab:hover::before {
+            left: 100%;
+        }
+
+        .event-tab:hover {
+            background: #333;
+            color: #ffffff;
+            transform: translateY(-1px);
+        }
+
+        .event-tab.active {
+            background: linear-gradient(135deg, #ffffff 0%, #f0f0f0 100%);
+            color: #000000;
+            font-weight: 400;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(255, 255, 255, 0.2);
+        }
+
+        .welcome-content {
+            background: linear-gradient(135deg, #1a1a1a 0%, #222222 100%);
+            padding: 3rem 2rem;
+            border-bottom: 1px solid #333;
+            text-align: center;
+            animation: fadeIn 1s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .welcome-card {
+            width: 100%;
+            max-width: 100%;
+            margin: 0;
+        }
+
+        .welcome-card h2 {
+            color: #ffffff;
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 300;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            animation: slideInDown 1s ease-out 0.3s both;
+        }
+
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .welcome-card p {
+            color: #cccccc;
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            animation: slideInUp 1s ease-out 0.5s both;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .event-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+            animation: fadeInUp 1s ease-out 0.7s both;
+        }
+
+        .event-option {
+            background: linear-gradient(135deg, #222222 0%, #2a2a2a 100%);
+            padding: 2rem;
+            border: 1px solid #333;
+            border-radius: 12px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .event-option::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #ffffff, #cccccc, #ffffff);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .event-option:hover::before {
+            transform: scaleX(1);
+        }
+
+        .event-option:hover {
+            border-color: #ffffff;
+            background: linear-gradient(135deg, #2a2a2a 0%, #333333 100%);
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .event-option h3 {
+            color: #ffffff;
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            font-weight: 400;
+            transition: color 0.3s ease;
+        }
+
+        .event-option:hover h3 {
+            color: #ffffff;
+        }
+
+        .event-option p {
+            color: #bbbbbb;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        .welcome-note {
+            color: #888888 !important;
+            font-style: italic;
+            font-size: 1rem !important;
+            margin-top: 2rem !important;
+        }
+
+        .event-tab-content {
+            background: #1a1a1a;
+            padding: 1.5rem;
+            border-bottom: 1px solid #333;
+        }
+
+        .event-tab-content h3 {
+            color: #ffffff;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            font-weight: 300;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .event-tab-content p {
+            color: #cccccc;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .language-controls {
+            background: #000000;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .language-btn {
+            background: #1a1a1a;
+            color: #ffffff;
+            border: 1px solid #333;
+            padding: 0.5rem 1rem;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 300;
+        }
+
+        .language-btn:hover {
+            border-color: #ffffff;
+            background: #ffffff;
+            color: #000000;
+        }
+
+        .language-selector {
+            background: #1a1a1a;
+            color: #ffffff;
+            border: 1px solid #333;
+            padding: 0.5rem;
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+
+        .language-selector:focus {
+            outline: none;
+            border-color: #ffffff;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .content {
+                padding: 2rem 1rem;
+            }
+            
+            .requirements-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .section {
+                padding-left: 1.5rem;
+            }
+
+            .requirement-card {
+                padding: 1.5rem;
+            }
+
+            .event-tabs {
+                flex-direction: column;
+            }
+
+            .event-tab {
+                border-right: none;
+                border-bottom: 1px solid #333;
+            }
+
+            .language-controls {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0.5rem;
+            }
+
+            .event-options {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .welcome-card h2 {
+                font-size: 1.5rem;
+            }
+
+            .welcome-card p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading" id="loadingScreen">
+        <div class="loading-spinner"></div>
+    </div>
+
+    <!-- Back to Top Button -->
+    <div class="back-to-top" id="backToTop" onclick="scrollToTop()"></div>
+
+    <div class="dj-tech-rider-isolation">
+        <div class="container">
+
+        <div class="header">
+            <h1>DJ Technical Rider</h1>
+            <p>Complete DJ Equipment & Technical Requirements</p>
+        </div>
+
+        <div class="top-controls">
+            <div class="event-tabs">
+                <button class="event-tab" onclick="selectEventTab('club')">Club</button>
+                <button class="event-tab" onclick="selectEventTab('festival')">Festival</button>
+            </div>
+            
+            <div class="welcome-content" id="welcomeContent">
+                <div class="welcome-card">
+                    <h2 id="welcomeTitle">Welcome to the DJ Technical Rider</h2>
+                    <p id="welcomeText">Please select an event type above to view the specific technical requirements and equipment specifications.</p>
+                    <div class="event-options">
+                        <div class="event-option">
+                            <h3 id="clubOptionTitle">Club Events</h3>
+                            <p id="clubOptionDesc">Standard club setup with existing sound system and lighting infrastructure. Optimized for venues with established technical systems.</p>
+                        </div>
+                        <div class="event-option">
+                            <h3 id="festivalOptionTitle">Festival Events</h3>
+                            <p id="festivalOptionDesc">Large-scale outdoor/indoor festival with full production infrastructure. Comprehensive requirements for major festival environments.</p>
+                        </div>
+                    </div>
+                    <p class="welcome-note" id="welcomeNote">Click on either "Club" or "Festival" tab to get started!</p>
+                </div>
+            </div>
+            
+            <div class="event-tab-content" id="clubContent" style="display: none;">
+                <h3 id="clubTitle">Club Event Technical Rider</h3>
+                <p id="clubDesc">Standard club setup with existing sound system and lighting infrastructure. This configuration is optimized for venues with established technical systems and professional staff.</p>
+            </div>
+            
+            <div class="event-tab-content" id="festivalContent" style="display: none;">
+                <h3 id="festivalTitle">Festival Technical Rider</h3>
+                <p id="festivalDesc">Large-scale outdoor/indoor festival with full production infrastructure. This configuration includes comprehensive sound, lighting, stage, and technical requirements for major festival environments with multiple stages and large audiences.</p>
+            </div>
+        </div>
+
+        <div class="language-controls">
+            <button class="language-btn" onclick="toggleLanguage()">🌐 Language</button>
+            <select class="language-selector" id="languageSelect" onchange="changeLanguage()">
+                <option value="en">🇺🇸 English</option>
+                <option value="de">🇩🇪 Deutsch</option>
+                <option value="es">🇪🇸 Español</option>
+            </select>
+        </div>
+
+        <div class="content" id="mainContent" style="display: none;">
+            <div class="section">
+                <h2 id="generalInfoTitle">General Information</h2>
+                <p id="generalInfoText">This technical rider outlines all requirements for successful event execution. Please review all sections carefully and ensure all specifications are met prior to the event date.</p>
+            </div>
+
+            <div class="section">
+                <h2 id="djEquipmentTitle">DJ Equipment Requirements</h2>
+                <div class="requirements-grid">
+                    <div class="requirement-card">
+                        <h4 id="djPersonalEquipmentTitle">DJ Personal Equipment</h4>
+                        <ul id="djPersonalEquipmentList">
+                            <li>DJ headphones (Sennheiser HD-25 or equivalent)</li>
+                            <li>USB drives with music library (backup required)</li>
+                            <li>Laptop with Serato DJ Pro or Rekordbox</li>
+                        </ul>
+                    </div>
+                    <div class="requirement-card">
+                        <h4 id="venueProvidedEquipmentTitle">Venue Provided Equipment</h4>
+                        <ul id="venueProvidedEquipmentList">
+                            <li>Professional DJ setup: 2x Pioneer CDJ-2000 or equivalent</li>
+                            <li>Professional mixer: Pioneer DJM-900NXS2 or equivalent</li>
+                            <li>Quality PA system with subwoofers</li>
+                            <li>Monitor speakers for DJ booth</li>
+                            <li>Essential cables and connections</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 id="djBoothLightingTitle">DJ Booth & Lighting</h2>
+                <div class="requirements-grid">
+                    <div class="requirement-card">
+                        <h4 id="djBoothSetupTitle">DJ Booth Setup</h4>
+                        <ul id="djBoothSetupList">
+                            <li>DJ table/booth: 6' x 3' (1.8m x 0.9m) minimum</li>
+                            <li>Table height: 3.5-4 feet (1.1-1.2m)</li>
+                            <li>Stable, non-slip surface</li>
+                            <li>Access to power outlets (minimum 4 outlets)</li>
+                            <li>Proper cable management system</li>
+                            <li>Storage space for equipment cases</li>
+                        </ul>
+                    </div>
+                    <div class="requirement-card">
+                        <h4 id="lightingEffectsTitle">Lighting & Effects</h4>
+                        <ul id="lightingEffectsList">
+                            <li>Minimum 6x LED PAR cans for ambient lighting</li>
+                            <li>4x moving head lights for dynamic effects</li>
+                            <li>2x laser systems (if venue allows)</li>
+                            <li>Fog/haze machine (if permitted)</li>
+                            <li>DMX control system for lighting synchronization</li>
+                            <li>Blackout capability for dramatic effects</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 id="venueRequirementsTitle">Essential Venue Requirements</h2>
+                <div class="requirements-grid">
+                    <div class="requirement-card">
+                        <h4 id="djBoothSetupBasicTitle">DJ Booth & Setup</h4>
+                        <ul id="djBoothSetupBasicList">
+                            <li>DJ table or booth (any size, just stable)</li>
+                            <li>Power outlets for laptop and equipment</li>
+                            <li>Basic lighting for DJ area</li>
+                            <li>Space for personal equipment</li>
+                            <li>Access to venue WiFi (if available)</li>
+                        </ul>
+                    </div>
+                    <div class="requirement-card">
+                        <h4 id="venueSpecsTitle">Venue Specifications</h4>
+                        <ul id="venueSpecsList">
+                            <li>Space for dancing and audience</li>
+                            <li>Basic climate control (not too hot/cold)</li>
+                            <li>Access to venue (stairs/elevator ok)</li>
+                            <li>Basic storage area for equipment</li>
+                            <li>Private area for DJ to prepare (optional)</li>
+                            <li>WiFi access (if available)</li>
+                        </ul>
+                    </div>
+                    <div class="requirement-card">
+                        <h4 id="powerRequirementsTitle">Power Requirements</h4>
+                        <ul id="powerRequirementsList">
+                            <li>Power outlets for DJ equipment</li>
+                            <li>Power for sound system</li>
+                            <li>Basic lighting power</li>
+                            <li>Extension cords (if needed)</li>
+                            <li>USB charging for laptop/phone (if possible)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 id="transportationTitle">Transportation & Logistics</h2>
+                <div class="transport-note">
+                    <h4 id="transportRequirementsTitle">Transportation Requirements</h4>
+                    <ul id="transportRequirementsList">
+                        <li>DJ travels by train - pickup required from nearest train station</li>
+                        <li>Train station pickup and drop-off service required</li>
+                        <li>Equipment transport vehicle with proper securing</li>
+                        <li>Loading assistance at train station and venue</li>
+                        <li>Return transportation to train station after event</li>
+                        <li>Backup transportation plan in case of train delays</li>
+                        <li>Luggage space for DJ equipment and personal items</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 id="technicalStaffTitle">Technical Staff & Setup</h2>
+                <div class="requirements-grid">
+                    <div class="requirement-card">
+                        <h4 id="helpfulPersonnelTitle">Helpful Personnel</h4>
+                        <ul id="helpfulPersonnelList">
+                            <li>Someone to help with setup (if possible)</li>
+                            <li>Venue contact person</li>
+                            <li>Basic security (if needed)</li>
+                            <li>Help with equipment loading (if needed)</li>
+                        </ul>
+                    </div>
+                    <div class="requirement-card">
+                        <h4 id="setupRequirementsTitle">Setup Requirements</h4>
+                        <ul id="setupRequirementsList">
+                            <li>1-2 hours setup time (flexible)</li>
+                            <li>30 minutes sound check</li>
+                            <li>30 minutes teardown time</li>
+                            <li>DJ arrives 1 hour before performance</li>
+                            <li>Basic equipment testing</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 id="safetySecurityTitle">Safety & Security</h2>
+                <div class="important">
+                    <h4 id="basicSafetyTitle">Basic Safety Requirements</h4>
+                    <ul id="basicSafetyList">
+                        <li>Safe electrical setup</li>
+                        <li>Clear access to exits</li>
+                        <li>Basic first aid available</li>
+                        <li>Safe venue environment</li>
+                        <li>Emergency contact information</li>
+                    </ul>
+                </div>
+            </div>
+
+
+
+            <div class="section">
+                <h2 id="contactInfoTitle">Contact Information</h2>
+                <div class="contact-info">
+                    <div class="contact-grid">
+                        <div class="contact-item">
+                            <strong id="djArtistLabel">DJ/Artist:</strong>
+                            <span id="djNameValue">DJ Name</span>
+                        </div>
+                        <div class="contact-item">
+                            <strong id="managerLabel">Manager:</strong>
+                            <span id="managerNameValue">Manager Name</span>
+                        </div>
+                        <div class="contact-item">
+                            <strong id="phoneLabel">Phone:</strong>
+                            <span id="phoneValue">+1 (555) 123-4567</span>
+                        </div>
+                        <div class="contact-item">
+                            <strong id="emailLabel">Email:</strong>
+                            <span id="emailValue">dj@example.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <strong id="emergencyLabel">Emergency:</strong>
+                            <span id="emergencyValue">+1 (555) 999-8888</span>
+                        </div>
+                        <div class="contact-item">
+                            <strong id="socialMediaLabel">Social Media:</strong>
+                            <span id="socialMediaValue">@djname</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 id="additionalNotesTitle">Additional Notes</h2>
+                <ul id="additionalNotesList">
+                    <li>Flexible setup - we can work with what's available</li>
+                    <li>Open to discuss any special requirements or limitations</li>
+                    <li>Happy to adapt to venue constraints</li>
+                    <li>DJ provides only: headphones, USB drives, and laptop</li>
+                    <li>Venue provides basic DJ equipment and sound system</li>
+                    <li>Train station pickup required (DJ travels by train)</li>
+                    <li>WiFi access helpful but not required</li>
+                    <li>Breaks as needed during longer sets</li>
+                    <li>Open to feedback and collaboration</li>
+                </ul>
+            </div>
+
+
+
+            <div class="section">
+                <h2 id="downloadOptionsTitle">Download Options</h2>
+                <div class="download-section">
+                    <h3 id="downloadTechRiderTitle">Download Tech Rider</h3>
+                    <p id="downloadTechRiderDesc">Download the complete technical rider as a PDF document</p>
+                    <a href="#" class="download-btn" onclick="downloadPDF()" id="downloadPDFBtn">Download PDF</a>
+                    <a href="#" class="download-btn" onclick="downloadChecklist()" id="downloadChecklistBtn">Download Checklist</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Translation data
+        const translations = {
+            en: {
+                title: "DJ Technical Rider",
+                subtitle: "Complete DJ Equipment & Technical Requirements",
+                language: "Language",
+                club: "Club",
+                festival: "Festival",
+                clubDesc: "Standard club setup with existing sound system and lighting infrastructure. This configuration is optimized for venues with established technical systems and professional staff.",
+                festivalDesc: "Large-scale outdoor/indoor festival with full production infrastructure. This configuration includes comprehensive sound, lighting, stage, and technical requirements for major festival environments with multiple stages and large audiences.",
+
+                generalInfo: "General Information",
+                generalInfoText: "This technical rider outlines all requirements for successful event execution. Please review all sections carefully and ensure all specifications are met prior to the event date.",
+                djEquipment: "DJ Equipment Requirements",
+                djPersonalEquipment: "DJ Personal Equipment",
+                venueProvidedEquipment: "Venue Provided Equipment",
+                // Personal equipment translations
+                djHeadphones: "DJ headphones (Sennheiser HD-25 or equivalent)",
+                usbDrives: "USB drives with music library (backup required)",
+                laptop: "Laptop with Serato DJ Pro or Rekordbox",
+                // DJ Booth & Setup translations
+                djBoothTable: "DJ table or booth (any size, just stable)",
+                powerOutlets: "Power outlets for laptop and equipment",
+                basicLighting: "Basic lighting for DJ area",
+                personalEquipmentSpace: "Space for personal equipment",
+                venueWifi: "Access to venue WiFi (if available)",
+                // Power Requirements translations
+                djEquipmentPower: "Power outlets for DJ equipment",
+                soundSystemPower: "Power for sound system",
+                lightingPower: "Basic lighting power",
+                extensionCords: "Extension cords (if needed)",
+                usbCharging: "USB charging for laptop/phone (if possible)",
+                soundSystem: "Sound System",
+                djSetup: "DJ Setup",
+                microphones: "Microphones & DI Boxes",
+                lighting: "Lighting Requirements",
+                stageLighting: "Stage Lighting",
+                powerRequirements: "Power Requirements",
+                venueRequirements: "Essential Venue Requirements",
+                djBoothSetup: "DJ Booth & Setup",
+                venueSpecs: "Venue Specifications",
+                technicalStaff: "Technical Staff & Setup",
+                helpfulPersonnel: "Helpful Personnel",
+                setupRequirements: "Setup Requirements",
+                safetySecurity: "Safety & Security",
+                basicSafety: "Basic Safety Requirements",
+                contactInfo: "Contact Information",
+                additionalNotes: "Additional Notes",
+                downloadOptions: "Download Options",
+                downloadTechRider: "Download Tech Rider",
+                downloadPDF: "Download PDF",
+                downloadChecklist: "Download Checklist",
+                generateContract: "Generate Booking Contract",
+                transportation: "Transportation & Logistics",
+                transportRequirements: "Transportation Requirements",
+                transportNote: "DJ travels by train from Mannheim - pickup required from nearest train station",
+                pickupDropoff: "Train station pickup and drop-off service required",
+                equipmentTransport: "Equipment transport vehicle with proper securing",
+                loadingAssistance: "Loading assistance at train station and venue",
+                returnTransport: "Return transportation to train station after event",
+                backupTransport: "Backup transportation plan in case of train delays",
+                // Equipment translations for different environments
+                clubEquipment: [
+                    "Professional DJ setup: 2x Pioneer CDJ-2000 or equivalent",
+                    "Professional mixer: Pioneer DJM-900NXS2 or equivalent",
+                    "Quality PA system with subwoofers",
+                    "Monitor speakers for DJ booth",
+                    "Essential cables and connections"
+                ],
+                festivalEquipment: [
+                    "Large-scale PA system with multiple speakers",
+                    "Professional DJ setup: 2x Pioneer CDJ-2000 with backup",
+                    "Professional mixer: Pioneer DJM-900NXS2 with backup",
+                    "Multiple monitor speakers",
+                    "Extensive lighting and effects system",
+                    "Weather protection for outdoor setup",
+                    "Generator power backup",
+                    "Professional stage setup",
+                    "Video screens (if applicable)",
+                    "Sound engineer and lighting technician"
+                ],
+                // Venue translations for different environments
+                clubVenue: [
+                    "Professional club environment",
+                    "Established dance floor and bar area",
+                    "Basic sound system",
+                    "Climate control and ventilation",
+                    "Basic staff and security",
+                    "WiFi access (if available)"
+                ],
+                festivalVenue: [
+                    "Large outdoor or indoor festival space",
+                    "Professional stage infrastructure",
+                    "Production infrastructure and technical areas",
+                    "Weather protection systems",
+                    "Large audience capacity with crowd management",
+                    "Technical crew and stage management",
+                    "Artist hospitality area",
+                    "Security and medical facilities",
+                    "Power distribution and backup generators",
+                    "Catering and crew facilities"
+                ],
+                // Setup translations for different environments
+                clubSetup: [
+                    "1-2 hours setup time",
+                    "30 minutes sound check and testing",
+                    "30 minutes teardown time",
+                    "DJ arrives 1 hour before performance",
+                    "Basic equipment testing"
+                ],
+                festivalSetup: [
+                    "4-6 hours setup time",
+                    "2-3 hours sound check and system testing",
+                    "2-3 hours teardown time",
+                    "DJ arrives 3-4 hours before performance",
+                    "Equipment testing and backup verification",
+                    "Production meeting with technical crew",
+                    "Weather contingency planning",
+                    "Multiple sound checks",
+                    "Emergency procedures briefing",
+                    "Artist liaison coordination"
+                ],
+                // Welcome page translations
+                welcomeTitle: "Welcome to the DJ Technical Rider",
+                welcomeText: "Please select an event type above to view the specific technical requirements and equipment specifications.",
+                clubOptionTitle: "Club Events",
+                clubOptionDesc: "Standard club setup with existing sound system and lighting infrastructure. Optimized for venues with established technical systems.",
+                festivalOptionTitle: "Festival Events",
+                festivalOptionDesc: "Large-scale outdoor/indoor festival with full production infrastructure. Comprehensive requirements for major festival environments.",
+                welcomeNote: "Click on either \"Club\" or \"Festival\" tab to get started!",
+                // Additional content translations
+                djBoothLighting: "DJ Booth & Lighting",
+                lightingEffects: "Lighting & Effects",
+                djBoothSetupDetails: [
+                    "DJ table/booth: 6' x 3' (1.8m x 0.9m) minimum",
+                    "Table height: 3.5-4 feet (1.1-1.2m)",
+                    "Stable, non-slip surface",
+                    "Access to power outlets (minimum 4 outlets)",
+                    "Proper cable management system",
+                    "Storage space for equipment cases"
+                ],
+                lightingEffectsDetails: [
+                    "Minimum 6x LED PAR cans for ambient lighting",
+                    "4x moving head lights for dynamic effects",
+                    "2x laser systems (if venue allows)",
+                    "Fog/haze machine (if permitted)",
+                    "DMX control system for lighting synchronization",
+                    "Blackout capability for dramatic effects"
+                ],
+                venueSpecsDetails: [
+                    "Space for dancing and audience",
+                    "Basic climate control (not too hot/cold)",
+                    "Access to venue (stairs/elevator ok)",
+                    "Basic storage area for equipment",
+                    "Private area for DJ to prepare (optional)",
+                    "WiFi access (if available)"
+                ],
+                powerRequirementsDetails: [
+                    "Power outlets for DJ equipment",
+                    "Power for sound system",
+                    "Basic lighting power",
+                    "Extension cords (if needed)",
+                    "USB charging for laptop/phone (if possible)"
+                ],
+                transportDetails: [
+                    "DJ travels by train - pickup required from nearest train station",
+                    "Train station pickup and drop-off service required",
+                    "Equipment transport vehicle with proper securing",
+                    "Loading assistance at train station and venue",
+                    "Return transportation to train station after event",
+                    "Backup transportation plan in case of train delays",
+                    "Luggage space for DJ equipment and personal items"
+                ],
+                helpfulPersonnelDetails: [
+                    "Someone to help with setup (if possible)",
+                    "Venue contact person",
+                    "Basic security (if needed)",
+                    "Help with equipment loading (if needed)"
+                ],
+                setupRequirementsDetails: [
+                    "1-2 hours setup time (flexible)",
+                    "30 minutes sound check",
+                    "30 minutes teardown time",
+                    "DJ arrives 1 hour before performance",
+                    "Basic equipment testing"
+                ],
+                basicSafetyDetails: [
+                    "Safe electrical setup",
+                    "Clear access to exits",
+                    "Basic first aid available",
+                    "Safe venue environment",
+                    "Emergency contact information"
+                ],
+
+                technicalStaffBriefed: "Technical staff briefed",
+                contactDetails: {
+                    djArtist: "DJ/Artist:",
+                    manager: "Manager:",
+                    phone: "Phone:",
+                    email: "Email:",
+                    emergency: "Emergency:",
+                    socialMedia: "Social Media:"
+                },
+                contactValues: {
+                    djName: "Markus Schubert",
+                    managerName: "Markus Schubert",
+                    phone: "+49 178 1850683",
+                    email: "noreply@djmarkuss.de",
+                    emergency: "+49 178 1850683",
+                    socialMedia: "@djmarkuss"
+                },
+                additionalNotesDetails: [
+                    "Flexible setup - we can work with what's available",
+                    "Open to discuss any special requirements or limitations",
+                    "Happy to adapt to venue constraints",
+                    "DJ provides only: headphones, USB drives, and laptop",
+                    "Venue provides basic DJ equipment and sound system",
+                    "Train station pickup required (DJ travels by train)",
+                    "WiFi access helpful but not required",
+                    "Breaks as needed during longer sets",
+                    "Open to feedback and collaboration"
+                ],
+                downloadTechRiderDesc: "Download the complete technical rider as a PDF document"
+            },
+            de: {
+                title: "DJ Technischer Rider",
+                subtitle: "Vollständige DJ-Ausrüstung & Technische Anforderungen",
+                language: "Sprache",
+                club: "Club",
+                festival: "Festival",
+                clubDesc: "Standard Club-Setup mit vorhandenem Soundsystem und Beleuchtungsinfrastruktur. Diese Konfiguration ist für Veranstaltungsorte mit etablierten technischen Systemen und professionellem Personal optimiert.",
+                festivalDesc: "Großes Outdoor/Indoor Festival mit vollständiger Produktionsinfrastruktur. Diese Konfiguration umfasst umfassende Sound-, Licht-, Bühnen- und technische Anforderungen für große Festivalumgebungen mit mehreren Bühnen und großem Publikum.",
+
+                generalInfo: "Allgemeine Informationen",
+                generalInfoText: "Dieser technische Rider beschreibt alle Anforderungen für eine erfolgreiche Veranstaltungsdurchführung. Bitte überprüfen Sie alle Abschnitte sorgfältig und stellen Sie sicher, dass alle Spezifikationen vor dem Veranstaltungsdatum erfüllt sind.",
+                djEquipment: "DJ-Ausrüstungsanforderungen",
+                djPersonalEquipment: "DJ Persönliche Ausrüstung",
+                venueProvidedEquipment: "Vom Veranstaltungsort bereitgestellte Ausrüstung",
+                // Personal equipment translations
+                djHeadphones: "DJ-Kopfhörer (Sennheiser HD-25 oder gleichwertig)",
+                usbDrives: "USB-Sticks mit Musikbibliothek (Backup erforderlich)",
+                laptop: "Laptop mit Serato DJ Pro oder Rekordbox",
+                // DJ Booth & Setup translations
+                djBoothTable: "DJ-Tisch oder -Booth (beliebige Größe, nur stabil)",
+                powerOutlets: "Steckdosen für Laptop und Ausrüstung",
+                basicLighting: "Grundlegende Beleuchtung für DJ-Bereich",
+                personalEquipmentSpace: "Platz für persönliche Ausrüstung",
+                venueWifi: "Zugang zum Veranstaltungsort-WiFi (falls verfügbar)",
+                // Power Requirements translations
+                djEquipmentPower: "Steckdosen für DJ-Ausrüstung",
+                soundSystemPower: "Strom für Soundsystem",
+                lightingPower: "Grundlegende Beleuchtungsenergie",
+                extensionCords: "Verlängerungskabel (falls benötigt)",
+                usbCharging: "USB-Laden für Laptop/Handy (falls möglich)",
+                soundSystem: "Soundsystem",
+                djSetup: "DJ-Setup",
+                microphones: "Mikrofone & DI-Boxen",
+                lighting: "Beleuchtungsanforderungen",
+                stageLighting: "Bühnenbeleuchtung",
+                powerRequirements: "Stromanforderungen",
+                venueRequirements: "Wesentliche Veranstaltungsortanforderungen",
+                djBoothSetup: "DJ-Booth & Setup",
+                venueSpecs: "Veranstaltungsortspezifikationen",
+                technicalStaff: "Technisches Personal & Setup",
+                helpfulPersonnel: "Hilfreiches Personal",
+                setupRequirements: "Setup-Anforderungen",
+                safetySecurity: "Sicherheit & Schutz",
+                basicSafety: "Grundlegende Sicherheitsanforderungen",
+                contactInfo: "Kontaktinformationen",
+                additionalNotes: "Zusätzliche Hinweise",
+                downloadOptions: "Download-Optionen",
+                downloadTechRider: "Technischen Rider herunterladen",
+                downloadPDF: "PDF herunterladen",
+                downloadChecklist: "Checkliste herunterladen",
+                generateContract: "Buchungsvertrag generieren",
+                transportation: "Transport & Logistik",
+                transportRequirements: "Transportanforderungen",
+                transportNote: "DJ reist mit dem Zug von Mannheim - Abholung vom nächstgelegenen Bahnhof erforderlich",
+                pickupDropoff: "Bahnhof-Abhol- und Bringservice erforderlich",
+                equipmentTransport: "Ausrüstungstransportfahrzeug mit ordnungsgemäßer Sicherung",
+                loadingAssistance: "Ladehilfe am Bahnhof und Veranstaltungsort",
+                returnTransport: "Rücktransport zum Bahnhof nach der Veranstaltung",
+                backupTransport: "Backup-Transportplan bei Zugverspätungen",
+                // Equipment translations for different environments
+                clubEquipment: [
+                    "Professionelles DJ-Setup: 2x Pioneer CDJ-2000 oder gleichwertig",
+                    "Professioneller Mixer: Pioneer DJM-900NXS2 oder gleichwertig",
+                    "Qualitäts-PA-System mit Subwoofern",
+                    "Monitor-Lautsprecher für DJ-Booth",
+                    "Wesentliche Kabel und Verbindungen"
+                ],
+                festivalEquipment: [
+                    "Großes PA-System mit mehreren Lautsprechern",
+                    "Professionelles DJ-Setup: 2x Pioneer CDJ-2000 mit Backup",
+                    "Professioneller Mixer: Pioneer DJM-900NXS2 mit Backup",
+                    "Mehrere Monitor-Lautsprecher",
+                    "Umfangreiche Beleuchtungs- und Effektanlage",
+                    "Wetterschutz für Outdoor-Setup",
+                    "Generator-Strombackup",
+                    "Professionelle Bühnenausstattung",
+                    "Videobildschirme (falls zutreffend)",
+                    "Ton- und Lichttechniker"
+                ],
+
+                // Venue translations for different environments
+                clubVenue: [
+                    "Professionelle Club-Umgebung",
+                    "Etablierte Tanzfläche und Barbereich",
+                    "Grundlegende Soundanlage",
+                    "Klimatisierung und Belüftung",
+                    "Grundlegendes Personal und Sicherheit",
+                    "WiFi-Zugang (falls verfügbar)"
+                ],
+                festivalVenue: [
+                    "Großer Outdoor- oder Indoor-Festivalbereich",
+                    "Professionelle Bühneninfrastruktur",
+                    "Produktionsinfrastruktur und technische Bereiche",
+                    "Wetterschutzsysteme",
+                    "Große Zuschauerkapazität mit Crowd-Management",
+                    "Technisches Team und Bühnenmanagement",
+                    "Künstler-Hospitality-Bereich",
+                    "Sicherheit und medizinische Einrichtungen",
+                    "Stromverteilung und Backup-Generatoren",
+                    "Catering- und Crew-Einrichtungen"
+                ],
+
+                // Setup translations for different environments
+                clubSetup: [
+                    "1-2 Stunden Setup-Zeit",
+                    "30 Minuten Soundcheck und Tests",
+                    "30 Minuten Abbauzeit",
+                    "DJ kommt 1 Stunde vor Performance",
+                    "Grundlegende Ausrüstungstests"
+                ],
+                festivalSetup: [
+                    "4-6 Stunden Setup-Zeit",
+                    "2-3 Stunden Soundcheck und Systemtests",
+                    "2-3 Stunden Abbauzeit",
+                    "DJ kommt 3-4 Stunden vor Performance",
+                    "Ausrüstungstests und Backup-Verifizierung",
+                    "Produktionsmeeting mit technischem Team",
+                    "Wetter-Notfallplanung",
+                    "Mehrere Soundchecks",
+                    "Notfallverfahren-Briefing",
+                    "Künstler-Liaison-Koordination"
+                ],
+                // Welcome page translations
+                welcomeTitle: "Willkommen beim DJ Technischen Rider",
+                welcomeText: "Bitte wählen Sie oben einen Veranstaltungstyp aus, um die spezifischen technischen Anforderungen und Ausrüstungsspezifikationen anzuzeigen.",
+                clubOptionTitle: "Club Events",
+                clubOptionDesc: "Standard Club-Setup mit vorhandenem Soundsystem und Beleuchtungsinfrastruktur. Optimiert für Veranstaltungsorte mit etablierten technischen Systemen.",
+                festivalOptionTitle: "Festival Events",
+                festivalOptionDesc: "Großes Outdoor/Indoor Festival mit vollständiger Produktionsinfrastruktur. Umfassende Anforderungen für große Festivalumgebungen.",
+                welcomeNote: "Klicken Sie auf den \"Club\" oder \"Festival\" Tab um zu beginnen!",
+                // Additional content translations
+                djBoothLighting: "DJ-Booth & Beleuchtung",
+                lightingEffects: "Beleuchtung & Effekte",
+                djBoothSetupDetails: [
+                    "DJ-Tisch/Booth: 6' x 3' (1,8m x 0,9m) Minimum",
+                    "Tischhöhe: 3,5-4 Fuß (1,1-1,2m)",
+                    "Stabile, rutschfeste Oberfläche",
+                    "Zugang zu Steckdosen (mindestens 4 Steckdosen)",
+                    "Ordnungsgemäßes Kabelmanagement-System",
+                    "Stauraum für Ausrüstungskoffer"
+                ],
+                lightingEffectsDetails: [
+                    "Mindestens 6x LED PAR-Scheinwerfer für Umgebungsbeleuchtung",
+                    "4x Moving-Head-Lichter für dynamische Effekte",
+                    "2x Laser-Systeme (falls vom Veranstaltungsort erlaubt)",
+                    "Nebel/Nebelmaschine (falls erlaubt)",
+                    "DMX-Steuerungssystem für Beleuchtungssynchronisation",
+                    "Blackout-Fähigkeit für dramatische Effekte"
+                ],
+                venueSpecsDetails: [
+                    "Platz zum Tanzen und für Publikum",
+                    "Grundlegende Klimatisierung (nicht zu heiß/kalt)",
+                    "Zugang zum Veranstaltungsort (Treppen/Aufzug ok)",
+                    "Grundlegender Lagerbereich für Ausrüstung",
+                    "Privater Bereich für DJ-Vorbereitung (optional)",
+                    "WiFi-Zugang (falls verfügbar)"
+                ],
+                powerRequirementsDetails: [
+                    "Steckdosen für DJ-Ausrüstung",
+                    "Strom für Soundsystem",
+                    "Grundlegende Beleuchtungsenergie",
+                    "Verlängerungskabel (falls benötigt)",
+                    "USB-Laden für Laptop/Handy (falls möglich)"
+                ],
+                transportDetails: [
+                    "DJ reist mit dem Zug - Abholung vom nächstgelegenen Bahnhof erforderlich",
+                    "Bahnhof-Abhol- und Bringservice erforderlich",
+                    "Ausrüstungstransportfahrzeug mit ordnungsgemäßer Sicherung",
+                    "Ladehilfe am Bahnhof und Veranstaltungsort",
+                    "Rücktransport zum Bahnhof nach der Veranstaltung",
+                    "Backup-Transportplan bei Zugverspätungen",
+                    "Gepäckraum für DJ-Ausrüstung und persönliche Gegenstände"
+                ],
+                helpfulPersonnelDetails: [
+                    "Jemand, der beim Setup hilft (falls möglich)",
+                    "Veranstaltungsort-Kontaktperson",
+                    "Grundlegende Sicherheit (falls benötigt)",
+                    "Hilfe beim Laden der Ausrüstung (falls benötigt)"
+                ],
+                setupRequirementsDetails: [
+                    "1-2 Stunden Setup-Zeit (flexibel)",
+                    "30 Minuten Soundcheck",
+                    "30 Minuten Abbauzeit",
+                    "DJ kommt 1 Stunde vor Performance",
+                    "Grundlegende Ausrüstungstests"
+                ],
+                basicSafetyDetails: [
+                    "Sichere elektrische Einrichtung",
+                    "Klare Zugänge zu Ausgängen",
+                    "Grundlegende Erste-Hilfe verfügbar",
+                    "Sichere Veranstaltungsortumgebung",
+                    "Notfallkontaktinformationen"
+                ],
+
+                technicalStaffBriefed: "Technisches Personal eingewiesen",
+                contactDetails: {
+                    djArtist: "DJ/Künstler:",
+                    manager: "Manager:",
+                    phone: "Telefon:",
+                    email: "E-Mail:",
+                    emergency: "Notfall:",
+                    socialMedia: "Soziale Medien:"
+                },
+                contactValues: {
+                    djName: "Markus Schubert",
+                    managerName: "Markus Schubert",
+                    phone: "+49 178 1850683",
+                    email: "noreply@djmarkuss.de",
+                    emergency: "+49 178 1850683",
+                    socialMedia: "@djmarkuss"
+                },
+                additionalNotesDetails: [
+                    "Flexibles Setup - wir können mit dem arbeiten, was verfügbar ist",
+                    "Offen für Diskussionen über besondere Anforderungen oder Einschränkungen",
+                    "Gerne bereit, uns an Veranstaltungsortbeschränkungen anzupassen",
+                    "DJ stellt nur zur Verfügung: Kopfhörer, USB-Sticks und Laptop",
+                    "Veranstaltungsort stellt grundlegende DJ-Ausrüstung und Soundsystem bereit",
+                    "Bahnhof-Abholung erforderlich (DJ reist mit dem Zug)",
+                    "WiFi-Zugang hilfreich, aber nicht erforderlich",
+                    "Pausen nach Bedarf während längerer Sets",
+                    "Offen für Feedback und Zusammenarbeit"
+                ],
+                downloadTechRiderDesc: "Laden Sie den vollständigen technischen Rider als PDF-Dokument herunter"
+
+            },
+            es: {
+                title: "Rider Técnico DJ",
+                subtitle: "Equipamiento DJ Completo y Requisitos Técnicos",
+                language: "Idioma",
+                club: "Club",
+                festival: "Festival",
+                clubDesc: "Configuración estándar de club con sistema de sonido e infraestructura de iluminación existente. Esta configuración está optimizada para lugares con sistemas técnicos establecidos y personal profesional.",
+                festivalDesc: "Festival a gran escala al aire libre/interior con infraestructura de producción completa. Esta configuración incluye requisitos integrales de sonido, iluminación, escenario y técnicos para entornos de festivales importantes con múltiples escenarios y grandes audiencias.",
+
+                generalInfo: "Información General",
+                generalInfoText: "Este rider técnico describe todos los requisitos para la ejecución exitosa del evento. Por favor revise todas las secciones cuidadosamente y asegúrese de que todas las especificaciones se cumplan antes de la fecha del evento.",
+                djEquipment: "Requisitos de Equipamiento DJ",
+                djPersonalEquipment: "Equipamiento Personal del DJ",
+                venueProvidedEquipment: "Equipamiento Proporcionado por el Lugar",
+                // Personal equipment translations
+                djHeadphones: "Auriculares DJ (Sennheiser HD-25 o equivalente)",
+                usbDrives: "Unidades USB con biblioteca musical (respaldo requerido)",
+                laptop: "Laptop con Serato DJ Pro o Rekordbox",
+                // DJ Booth & Setup translations
+                djBoothTable: "Mesa o cabina DJ (cualquier tamaño, solo estable)",
+                powerOutlets: "Enchufes para laptop y equipamiento",
+                basicLighting: "Iluminación básica para área DJ",
+                personalEquipmentSpace: "Espacio para equipamiento personal",
+                venueWifi: "Acceso WiFi del lugar (si está disponible)",
+                // Power Requirements translations
+                djEquipmentPower: "Enchufes para equipamiento DJ",
+                soundSystemPower: "Energía para sistema de sonido",
+                lightingPower: "Energía básica para iluminación",
+                extensionCords: "Cables de extensión (si es necesario)",
+                usbCharging: "Carga USB para laptop/teléfono (si es posible)",
+                soundSystem: "Sistema de Sonido",
+                djSetup: "Configuración DJ",
+                microphones: "Micrófonos y Cajas DI",
+                lighting: "Requisitos de Iluminación",
+                stageLighting: "Iluminación de Escenario",
+                powerRequirements: "Requisitos de Energía",
+                venueRequirements: "Requisitos Esenciales del Lugar",
+                djBoothSetup: "Cabina DJ y Configuración",
+                venueSpecs: "Especificaciones del Lugar",
+                technicalStaff: "Personal Técnico y Configuración",
+                helpfulPersonnel: "Personal Útil",
+                setupRequirements: "Requisitos de Configuración",
+                safetySecurity: "Seguridad y Protección",
+                basicSafety: "Requisitos Básicos de Seguridad",
+                contactInfo: "Información de Contacto",
+                additionalNotes: "Notas Adicionales",
+                downloadOptions: "Opciones de Descarga",
+                downloadTechRider: "Descargar Rider Técnico",
+                downloadPDF: "Descargar PDF",
+                downloadChecklist: "Descargar Lista de Verificación",
+                generateContract: "Generar Contrato de Reserva",
+                transportation: "Transporte y Logística",
+                transportRequirements: "Requisitos de Transporte",
+                transportNote: "DJ viaja en tren desde Mannheim - se debe proporcionar recogida desde la estación de tren más cercana",
+                pickupDropoff: "Servicio de recogida y entrega requerido desde la ubicación del DJ",
+                equipmentTransport: "Vehículo de transporte de equipamiento con sujeción adecuada",
+                loadingAssistance: "Asistencia de carga en ubicaciones de recogida y lugar",
+                                returnTransport: "Transporte de regreso después de completar el evento",
+                backupTransport: "Plan de transporte de respaldo en caso de retrasos",
+                // Welcome page translations
+                welcomeTitle: "Bienvenido al Rider Técnico DJ",
+                welcomeText: "Por favor seleccione un tipo de evento arriba para ver los requisitos técnicos específicos y especificaciones de equipamiento.",
+                clubOptionTitle: "Eventos de Club",
+                clubOptionDesc: "Configuración estándar de club con sistema de sonido e infraestructura de iluminación existente. Optimizado para lugares con sistemas técnicos establecidos.",
+                festivalOptionTitle: "Eventos de Festival",
+                festivalOptionDesc: "Festival a gran escala al aire libre/interior con infraestructura de producción completa. Requisitos integrales para entornos de festivales importantes.",
+                welcomeNote: "¡Haga clic en la pestaña \"Club\" o \"Festival\" para comenzar!",
+                // Additional content translations
+                djBoothLighting: "Cabina DJ e Iluminación",
+                lightingEffects: "Iluminación y Efectos",
+                djBoothSetupDetails: [
+                    "Mesa/cabina DJ: 6' x 3' (1,8m x 0,9m) mínimo",
+                    "Altura de mesa: 3,5-4 pies (1,1-1,2m)",
+                    "Superficie estable y antideslizante",
+                    "Acceso a enchufes (mínimo 4 enchufes)",
+                    "Sistema de gestión de cables adecuado",
+                    "Espacio de almacenamiento para casos de equipamiento"
+                ],
+                lightingEffectsDetails: [
+                    "Mínimo 6x luces LED PAR para iluminación ambiental",
+                    "4x luces móviles para efectos dinámicos",
+                    "2x sistemas láser (si el lugar lo permite)",
+                    "Máquina de niebla/humo (si está permitido)",
+                    "Sistema de control DMX para sincronización de iluminación",
+                    "Capacidad de apagado total para efectos dramáticos"
+                ],
+                venueSpecsDetails: [
+                    "Espacio para baile y audiencia",
+                    "Control climático básico (no muy caliente/frío)",
+                    "Acceso al lugar (escaleras/ascensor ok)",
+                    "Área de almacenamiento básica para equipamiento",
+                    "Área privada para preparación del DJ (opcional)",
+                    "Acceso WiFi (si está disponible)"
+                ],
+                powerRequirementsDetails: [
+                    "Enchufes para equipamiento DJ",
+                    "Energía para sistema de sonido",
+                    "Energía básica para iluminación",
+                    "Cables de extensión (si es necesario)",
+                    "Carga USB para laptop/teléfono (si es posible)"
+                ],
+                transportDetails: [
+                    "DJ viaja en tren - se requiere recogida desde la estación de tren más cercana",
+                    "Servicio de recogida y entrega en estación de tren requerido",
+                    "Vehículo de transporte de equipamiento con sujeción adecuada",
+                    "Asistencia de carga en estación de tren y lugar",
+                    "Transporte de regreso a estación de tren después del evento",
+                    "Plan de transporte de respaldo en caso de retrasos de tren",
+                    "Espacio de equipaje para equipamiento DJ y artículos personales"
+                ],
+                helpfulPersonnelDetails: [
+                    "Alguien para ayudar con la configuración (si es posible)",
+                    "Persona de contacto del lugar",
+                    "Seguridad básica (si es necesaria)",
+                    "Ayuda con carga de equipamiento (si es necesaria)"
+                ],
+                setupRequirementsDetails: [
+                    "1-2 horas tiempo de configuración (flexible)",
+                    "30 minutos verificación de sonido",
+                    "30 minutos tiempo de desmontaje",
+                    "DJ llega 1 hora antes de la presentación",
+                    "Pruebas básicas de equipamiento"
+                ],
+                basicSafetyDetails: [
+                    "Configuración eléctrica segura",
+                    "Acceso claro a salidas",
+                    "Primeros auxilios básicos disponibles",
+                    "Entorno seguro del lugar",
+                    "Información de contacto de emergencia"
+                ],
+
+                technicalStaffBriefed: "Personal técnico informado",
+                contactDetails: {
+                    djArtist: "DJ/Artista:",
+                    manager: "Manager:",
+                    phone: "Teléfono:",
+                    email: "Correo:",
+                    emergency: "Emergencia:",
+                    socialMedia: "Redes Sociales:"
+                },
+                contactValues: {
+                    djName: "Markus Schubert",
+                    managerName: "Markus Schubert",
+                    phone: "+49 178 1850683",
+                    email: "noreply@djmarkuss.de",
+                    emergency: "+49 178 1850683",
+                    socialMedia: "@djmarkuss"
+                },
+                additionalNotesDetails: [
+                    "Configuración flexible - podemos trabajar con lo que esté disponible",
+                    "Abierto a discutir requisitos especiales o limitaciones",
+                    "Feliz de adaptarse a restricciones del lugar",
+                    "DJ proporciona solo: auriculares, unidades USB y laptop",
+                    "El lugar proporciona equipamiento DJ básico y sistema de sonido",
+                    "Recogida en estación de tren requerida (DJ viaja en tren)",
+                    "Acceso WiFi útil pero no requerido",
+                    "Descansos según sea necesario durante sets más largos",
+                    "Abierto a comentarios y colaboración"
+                ],
+                downloadTechRiderDesc: "Descargue el rider técnico completo como documento PDF",
+                
+                // Welcome page translations
+                welcomeTitle: "Bienvenido al Rider Técnico DJ",
+                welcomeText: "Por favor seleccione un tipo de evento arriba para ver los requisitos técnicos específicos y especificaciones de equipamiento.",
+                clubOptionTitle: "Eventos de Club",
+                clubOptionDesc: "Configuración estándar de club con sistema de sonido existente e infraestructura de iluminación. Optimizado para lugares con sistemas técnicos establecidos.",
+                festivalOptionTitle: "Eventos de Festival",
+                festivalOptionDesc: "Festival grande al aire libre/interior con infraestructura de producción completa. Requisitos integrales para entornos de festival importantes.",
+                welcomeNote: "¡Haga clic en la pestaña \"Club\" o \"Festival\" para comenzar!",
+                
+                // Additional content translations
+                djBoothLighting: "Cabina DJ e Iluminación",
+                lightingEffects: "Iluminación y Efectos",
+                djBoothSetupDetails: [
+                    "Mesa/cabina DJ: 6' x 3' (1.8m x 0.9m) mínimo",
+                    "Altura de mesa: 3.5-4 pies (1.1-1.2m)",
+                    "Superficie estable y antideslizante",
+                    "Acceso a enchufes (mínimo 4 enchufes)",
+                    "Sistema de gestión de cables adecuado",
+                    "Espacio de almacenamiento para cajas de equipamiento"
+                ],
+                
+                // Equipment translations for different environments
+                clubEquipment: [
+                    "Configuración DJ profesional: 2x Pioneer CDJ-2000 o equivalente",
+                    "Mezclador profesional: Pioneer DJM-900NXS2 o equivalente",
+                    "Sistema PA de calidad con subwoofers",
+                    "Altavoces de monitor para cabina DJ",
+                    "Cables y conexiones esenciales"
+                ],
+                festivalEquipment: [
+                    "Sistema PA grande con múltiples altavoces",
+                    "Configuración DJ profesional: 2x Pioneer CDJ-2000 con respaldo",
+                    "Mezclador profesional: Pioneer DJM-900NXS2 con respaldo",
+                    "Múltiples altavoces de monitor",
+                    "Sistema extenso de iluminación y efectos",
+                    "Protección climática para configuración exterior",
+                    "Respaldo de generador eléctrico",
+                    "Equipamiento de escenario profesional",
+                    "Pantallas de video (si aplica)",
+                    "Técnicos de sonido e iluminación"
+                ],
+                // Venue translations for different environments
+                clubVenue: [
+                    "Entorno profesional de club",
+                    "Pista de baile establecida y área de bar",
+                    "Sistema de sonido básico",
+                    "Control climático y ventilación",
+                    "Personal básico y seguridad",
+                    "Acceso WiFi (si está disponible)"
+                ],
+                festivalVenue: [
+                    "Espacio de festival grande al aire libre o interior",
+                    "Infraestructura de escenario profesional",
+                    "Infraestructura de producción y áreas técnicas",
+                    "Sistemas de protección climática",
+                    "Gran capacidad de audiencia con gestión de multitudes",
+                    "Equipo técnico y gestión de escenario",
+                    "Área de hospitalidad para artistas",
+                    "Instalaciones de seguridad y médicas",
+                    "Distribución de energía y generadores de respaldo",
+                    "Instalaciones de catering y equipo"
+                ],
+                // Setup translations for different environments
+                clubSetup: [
+                    "1-2 horas tiempo de configuración",
+                    "30 minutos verificación de sonido y pruebas",
+                    "30 minutos tiempo de desmontaje",
+                    "DJ llega 1 hora antes de la presentación",
+                    "Pruebas básicas de equipamiento"
+                ],
+                festivalSetup: [
+                    "4-6 horas tiempo de configuración",
+                    "2-3 horas verificación de sonido y pruebas del sistema",
+                    "2-3 horas tiempo de desmontaje",
+                    "DJ llega 3-4 horas antes de la presentación",
+                    "Pruebas de equipamiento y verificación de respaldo",
+                    "Reunión de producción con equipo técnico",
+                    "Planificación de contingencia climática",
+                    "Múltiples verificaciones de sonido",
+                    "Información de procedimientos de emergencia",
+                    "Coordinación de enlace con artistas"
+                ]
+            }
+        };
+
+        let currentLanguage = 'en';
+        let currentEventType = 'club';
+
+        function selectEventTab(eventType) {
+            currentEventType = eventType;
+            
+            // Update tab buttons
+            document.querySelectorAll('.event-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            // Hide welcome content
+            document.getElementById('welcomeContent').style.display = 'none';
+            
+            // Show main content
+            document.getElementById('mainContent').style.display = 'block';
+            
+            // Update tab content visibility
+            document.querySelectorAll('.event-tab-content').forEach(content => {
+                content.style.display = 'none';
+            });
+            document.getElementById(eventType + 'Content').style.display = 'block';
+            
+            // Update content based on event type
+            updateContentForEventType(eventType);
+        }
+
+        function toggleLanguage() {
+            const selector = document.getElementById('languageSelect');
+            selector.style.display = selector.style.display === 'none' ? 'block' : 'none';
+        }
+
+        function changeLanguage() {
+            const selector = document.getElementById('languageSelect');
+            currentLanguage = selector.value;
+            updateContentForLanguage(currentLanguage);
+        }
+
+        function updateContentForLanguage(lang) {
+            const t = translations[lang];
+            
+            // Update header
+            document.querySelector('.header h1').textContent = t.title;
+            document.querySelector('.header p').textContent = t.subtitle;
+            
+            // Update all section headings
+            document.querySelectorAll('.section h2').forEach((heading, index) => {
+                const headings = [
+                    t.generalInfo,
+                    t.djEquipment,
+                    t.lighting,
+                    t.venueRequirements,
+                    t.transportation,
+                    t.technicalStaff,
+                    t.safetySecurity,
+                    t.preEventChecklist,
+                    t.contactInfo,
+                    t.additionalNotes,
+                    t.downloadOptions
+                ];
+                if (headings[index]) {
+                    heading.textContent = headings[index];
+                }
+            });
+
+            // Update tab content descriptions
+            updateTabContentForLanguage(lang);
+            
+            // Update specific content sections
+            updateSpecificContent(lang);
+            
+            // Update event type content based on current selection
+            updateContentForEventType(currentEventType);
+        }
+
+        function updateTabContentForLanguage(lang) {
+            const t = translations[lang];
+            
+            // Update welcome page content
+            const welcomeTitle = document.getElementById('welcomeTitle');
+            const welcomeText = document.getElementById('welcomeText');
+            const clubOptionTitle = document.getElementById('clubOptionTitle');
+            const clubOptionDesc = document.getElementById('clubOptionDesc');
+            const festivalOptionTitle = document.getElementById('festivalOptionTitle');
+            const festivalOptionDesc = document.getElementById('festivalOptionDesc');
+            const welcomeNote = document.getElementById('welcomeNote');
+            
+            if (welcomeTitle) welcomeTitle.textContent = t.welcomeTitle;
+            if (welcomeText) welcomeText.textContent = t.welcomeText;
+            if (clubOptionTitle) clubOptionTitle.textContent = t.clubOptionTitle;
+            if (clubOptionDesc) clubOptionDesc.textContent = t.clubOptionDesc;
+            if (festivalOptionTitle) festivalOptionTitle.textContent = t.festivalOptionTitle;
+            if (festivalOptionDesc) festivalOptionDesc.textContent = t.festivalOptionDesc;
+            if (welcomeNote) welcomeNote.textContent = t.welcomeNote;
+            
+            // Update club tab content
+            const clubTitle = document.getElementById('clubTitle');
+            const clubDesc = document.getElementById('clubDesc');
+            if (clubTitle && clubDesc) {
+                clubTitle.textContent = t.club + ' Event Technical Rider';
+                clubDesc.textContent = t.clubDesc;
+            }
+            
+            // Update festival tab content
+            const festivalTitle = document.getElementById('festivalTitle');
+            const festivalDesc = document.getElementById('festivalDesc');
+            if (festivalTitle && festivalDesc) {
+                festivalTitle.textContent = t.festival + ' Technical Rider';
+                festivalDesc.textContent = t.festivalDesc;
+            }
+        }
+
+        function updateSpecificContent(lang) {
+            const t = translations[lang];
+            
+            // Update all section titles
+            updateSectionTitles(lang);
+            
+            // Update all content lists
+            updateContentLists(lang);
+            
+            // Update all buttons and interactive elements
+            updateButtons(lang);
+        }
+
+        function updateSectionTitles(lang) {
+            const t = translations[lang];
+            
+            // Update main section titles
+            const titleElements = {
+                'generalInfoTitle': t.generalInfo,
+                'djEquipmentTitle': t.djEquipment,
+                'djBoothLightingTitle': t.djBoothLighting,
+                'venueRequirementsTitle': t.venueRequirements,
+                'transportationTitle': t.transportation,
+                'technicalStaffTitle': t.technicalStaff,
+                'safetySecurityTitle': t.safetySecurity,
+                'contactInfoTitle': t.contactInfo,
+                'additionalNotesTitle': t.additionalNotes,
+                'downloadOptionsTitle': t.downloadOptions
+            };
+            
+            Object.keys(titleElements).forEach(id => {
+                const element = document.getElementById(id);
+                if (element) {
+                    element.textContent = titleElements[id];
+                }
+            });
+            
+            // Update subsection titles
+            const subtitleElements = {
+                'djPersonalEquipmentTitle': t.djPersonalEquipment,
+                'venueProvidedEquipmentTitle': t.venueProvidedEquipment,
+                'djBoothSetupTitle': t.djBoothSetup,
+                'lightingEffectsTitle': t.lightingEffects,
+                'djBoothSetupBasicTitle': t.djBoothSetup,
+                'venueSpecsTitle': t.venueSpecs,
+                'powerRequirementsTitle': t.powerRequirements,
+                'transportRequirementsTitle': t.transportRequirements,
+                'helpfulPersonnelTitle': t.helpfulPersonnel,
+                'setupRequirementsTitle': t.setupRequirements,
+                'basicSafetyTitle': t.basicSafety,
+                'downloadTechRiderTitle': t.downloadTechRider
+            };
+            
+            Object.keys(subtitleElements).forEach(id => {
+                const element = document.getElementById(id);
+                if (element) {
+                    element.textContent = subtitleElements[id];
+                }
+            });
+            
+            // Update contact labels
+            const contactLabels = {
+                'djArtistLabel': t.contactDetails.djArtist,
+                'managerLabel': t.contactDetails.manager,
+                'phoneLabel': t.contactDetails.phone,
+                'emailLabel': t.contactDetails.email,
+                'emergencyLabel': t.contactDetails.emergency,
+                'socialMediaLabel': t.contactDetails.socialMedia
+            };
+            
+            Object.keys(contactLabels).forEach(id => {
+                const element = document.getElementById(id);
+                if (element) {
+                    element.textContent = contactLabels[id];
+                }
+            });
+            
+            // Update contact values
+            const contactValues = {
+                'djNameValue': t.contactValues.djName,
+                'managerNameValue': t.contactValues.managerName,
+                'phoneValue': t.contactValues.phone,
+                'emailValue': t.contactValues.email,
+                'emergencyValue': t.contactValues.emergency,
+                'socialMediaValue': t.contactValues.socialMedia
+            };
+            
+            Object.keys(contactValues).forEach(id => {
+                const element = document.getElementById(id);
+                if (element) {
+                    element.textContent = contactValues[id];
+                }
+            });
+        }
+
+        function updateContentLists(lang) {
+            const t = translations[lang];
+            
+            // Update all content lists
+            const listUpdates = {
+                'generalInfoText': t.generalInfoText,
+                'djPersonalEquipmentList': [t.djHeadphones, t.usbDrives, t.laptop],
+                'venueProvidedEquipmentList': t.clubEquipment,
+                'djBoothSetupList': t.djBoothSetupDetails,
+                'lightingEffectsList': t.lightingEffectsDetails,
+                'djBoothSetupBasicList': [t.djBoothTable, t.powerOutlets, t.basicLighting, t.personalEquipmentSpace, t.venueWifi],
+                'venueSpecsList': t.venueSpecsDetails,
+                'powerRequirementsList': t.powerRequirementsDetails,
+                'transportRequirementsList': t.transportDetails,
+                'helpfulPersonnelList': t.helpfulPersonnelDetails,
+                'setupRequirementsList': t.setupRequirementsDetails,
+                'basicSafetyList': t.basicSafetyDetails,
+                'additionalNotesList': t.additionalNotesDetails
+            };
+            
+
+            
+            Object.keys(listUpdates).forEach(id => {
+                const element = document.getElementById(id);
+                if (element) {
+                    if (Array.isArray(listUpdates[id])) {
+                        element.innerHTML = listUpdates[id].map(item => `<li>${item}</li>`).join('');
+                    } else {
+                        element.textContent = listUpdates[id];
+                    }
+                }
+            });
+        }
+
+        function updateButtons(lang) {
+            const t = translations[lang];
+            
+            // Update download buttons
+            const downloadPDFBtn = document.getElementById('downloadPDFBtn');
+            const downloadChecklistBtn = document.getElementById('downloadChecklistBtn');
+            
+            if (downloadPDFBtn) downloadPDFBtn.textContent = t.downloadPDF;
+            if (downloadChecklistBtn) downloadChecklistBtn.textContent = t.downloadChecklist;
+            
+            // Update download description
+            const downloadDesc = document.getElementById('downloadTechRiderDesc');
+            if (downloadDesc) downloadDesc.textContent = t.downloadTechRiderDesc;
+        }
+
+
+
+        // All translation functions have been replaced with the new ID-based system above
+
+        function updateContentForEventType(eventType) {
+            console.log('Event type changed to:', eventType);
+            
+            // Update equipment requirements based on event type
+            updateEquipmentForEventType(eventType);
+            
+            // Update venue requirements based on event type
+            updateVenueForEventType(eventType);
+            
+            // Update setup requirements based on event type
+            updateSetupForEventType(eventType);
+        }
+
+        function updateEquipmentForEventType(eventType) {
+            const equipmentCards = document.querySelectorAll('.requirement-card');
+            equipmentCards.forEach(card => {
+                const heading = card.querySelector('h4');
+                if (heading && (
+                    heading.textContent.includes('Venue Provided Equipment') || 
+                    heading.textContent.includes('Vom Veranstaltungsort bereitgestellte Ausrüstung') ||
+                    heading.textContent.includes('Equipamiento Proporcionado por el Lugar') ||
+                    heading.textContent.includes('Équipement Fourni par le Lieu') ||
+                    heading.textContent.includes('Attrezzatura Fornita dal Luogo') ||
+                    heading.textContent.includes('Door Locatie Verzorgde Uitrusting')
+                )) {
+                    const equipmentList = card.querySelector('ul');
+                    const t = translations[currentLanguage];
+                    
+                    let equipmentArray;
+                    switch(eventType) {
+                        case 'club':
+                            equipmentArray = t.clubEquipment || [
+                                "Professional DJ setup: 2x Pioneer CDJ-2000 or equivalent",
+                                "Professional mixer: Pioneer DJM-900NXS2 or equivalent",
+                                "Quality PA system with subwoofers",
+                                "Monitor speakers for DJ booth",
+                                "Essential cables and connections"
+                            ];
+                            break;
+                        case 'festival':
+                            equipmentArray = t.festivalEquipment || [
+                                "Large-scale PA system with multiple speakers",
+                                "Professional DJ setup: 2x Pioneer CDJ-2000 with backup",
+                                "Professional mixer: Pioneer DJM-900NXS2 with backup",
+                                "Multiple monitor speakers",
+                                "Extensive lighting and effects system",
+                                "Weather protection for outdoor setup",
+                                "Generator power backup",
+                                "Professional stage setup",
+                                "Video screens (if applicable)",
+                                "Sound engineer and lighting technician"
+                            ];
+                            break;
+                    }
+                    
+                    if (equipmentArray) {
+                        equipmentList.innerHTML = equipmentArray.map(item => `<li>${item}</li>`).join('');
+                    }
+                }
+            });
+        }
+
+        function updateVenueForEventType(eventType) {
+            const venueCards = document.querySelectorAll('.requirement-card');
+            venueCards.forEach(card => {
+                const heading = card.querySelector('h4');
+                if (heading && (
+                    heading.textContent.includes('Venue Specifications') || 
+                    heading.textContent.includes('Veranstaltungsortspezifikationen') ||
+                    heading.textContent.includes('Especificaciones del Lugar') ||
+                    heading.textContent.includes('Spécifications du Lieu') ||
+                    heading.textContent.includes('Specifiche Luogo') ||
+                    heading.textContent.includes('Locatiespecificaties')
+                )) {
+                    const venueList = card.querySelector('ul');
+                    const t = translations[currentLanguage];
+                    
+                    let venueArray;
+                    switch(eventType) {
+                        case 'club':
+                            venueArray = t.clubVenue || [
+                                "Professional club environment",
+                                "Established dance floor and bar area",
+                                "Basic sound system",
+                                "Climate control and ventilation",
+                                "Basic staff and security",
+                                "WiFi access (if available)"
+                            ];
+                            break;
+                        case 'festival':
+                            venueArray = t.festivalVenue || [
+                                "Large outdoor or indoor festival space",
+                                "Professional stage infrastructure",
+                                "Production infrastructure and technical areas",
+                                "Weather protection systems",
+                                "Large audience capacity with crowd management",
+                                "Technical crew and stage management",
+                                "Artist hospitality area",
+                                "Security and medical facilities",
+                                "Power distribution and backup generators",
+                                "Catering and crew facilities"
+                            ];
+                            break;
+                    }
+                    
+                    if (venueArray) {
+                        venueList.innerHTML = venueArray.map(item => `<li>${item}</li>`).join('');
+                    }
+                }
+            });
+        }
+
+        function updateSetupForEventType(eventType) {
+            const setupCards = document.querySelectorAll('.requirement-card');
+            setupCards.forEach(card => {
+                const heading = card.querySelector('h4');
+                if (heading && (
+                    heading.textContent.includes('Setup Requirements') || 
+                    heading.textContent.includes('Setup-Anforderungen') ||
+                    heading.textContent.includes('Requisitos de Configuración') ||
+                    heading.textContent.includes('Exigences de Configuration') ||
+                    heading.textContent.includes('Requisiti Setup') ||
+                    heading.textContent.includes('Setup Vereisten')
+                )) {
+                    const setupList = card.querySelector('ul');
+                    const t = translations[currentLanguage];
+                    
+                    let setupArray;
+                    switch(eventType) {
+                        case 'club':
+                            setupArray = t.clubSetup || [
+                                "1-2 hours setup time",
+                                "30 minutes sound check and testing",
+                                "30 minutes teardown time",
+                                "DJ arrives 1 hour before performance",
+                                "Basic equipment testing"
+                            ];
+                            break;
+                        case 'festival':
+                            setupArray = t.festivalSetup || [
+                                "4-6 hours setup time",
+                                "2-3 hours sound check and system testing",
+                                "2-3 hours teardown time",
+                                "DJ arrives 3-4 hours before performance",
+                                "Equipment testing and backup verification",
+                                "Production meeting with technical crew",
+                                "Weather contingency planning",
+                                "Multiple sound checks",
+                                "Emergency procedures briefing",
+                                "Artist liaison coordination"
+                            ];
+                            break;
+                    }
+                    
+                    if (setupArray) {
+                        setupList.innerHTML = setupArray.map(item => `<li>${item}</li>`).join('');
+                    }
+                }
+            });
+        }
+
+        function downloadPDF() {
+            // Create a new window with print-friendly version
+            const printWindow = window.open('', '_blank');
+            printWindow.document.write(`
+                <!DOCTYPE html>
+                <html>
+                <head>
+                    <title>DJ Technical Rider - PDF</title>
+                    <style>
+                        body { font-family: Arial, sans-serif; margin: 20px; }
+                        h1 { color: #000; text-align: center; }
+                        h2 { color: #333; border-bottom: 1px solid #ccc; }
+                        .section { margin: 20px 0; }
+                        .requirement-card { border: 1px solid #ccc; padding: 15px; margin: 10px 0; }
+                        .important { background: #fff3cd; border: 1px solid #ffeaa7; padding: 15px; }
+                        .checklist { background: #d4edda; border: 1px solid #c3e6cb; padding: 15px; }
+                        .transport-note { background: #fff3cd; border: 1px solid #ffaa00; padding: 15px; }
+                        @media print { body { margin: 0; } }
+                    </style>
+                </head>
+                <body>
+                    ${document.querySelector('.content').innerHTML}
+                </body>
+                </html>
+            `);
+            printWindow.document.close();
+            printWindow.print();
+        }
+
+        function downloadChecklist() {
+            const checklist = `
+                DJ TECHNICAL RIDER CHECKLIST
+                =============================
+                
+                PRE-EVENT CHECKLIST:
+                [ ] Venue confirmed and site visit completed
+                [ ] All DJ equipment available and tested
+                [ ] Transportation arranged and confirmed
+                [ ] Power requirements verified
+                [ ] Sound system specifications met
+                [ ] Lighting system operational
+                [ ] Security personnel assigned
+                [ ] Insurance certificates provided
+                [ ] Emergency contacts exchanged
+                [ ] Backup equipment available
+                
+                SETUP DAY CHECKLIST:
+                [ ] DJ equipment loaded and secured
+                [ ] Transportation on time
+                [ ] Venue access granted
+                [ ] Power outlets tested
+                [ ] Sound system connected and tested
+                [ ] Lighting system synchronized
+                [ ] DJ booth properly set up
+                [ ] Music library loaded
+                [ ] Backup equipment tested
+                [ ] Safety equipment in place
+                
+                PERFORMANCE CHECKLIST:
+                [ ] All equipment functioning properly
+                [ ] Sound levels balanced
+                [ ] Lighting effects working
+                [ ] Emergency procedures reviewed
+                [ ] ${translations[currentLanguage].technicalStaffBriefed}
+                [ ] Security measures in place
+                [ ] Backup systems ready
+                [ ] Communication systems tested
+                
+                POST-EVENT CHECKLIST:
+                [ ] Equipment properly packed
+                [ ] Venue left in good condition
+                [ ] Transportation arranged for return
+                [ ] All equipment accounted for
+                [ ] Feedback collected
+                [ ] Payment processed
+                [ ] Future bookings discussed
+                
+                CONTACT INFORMATION:
+                DJ/Artist: _________________
+                Manager: _________________
+                Phone: _________________
+                Email: _________________
+                Emergency: _________________
+            `;
+            
+            const blob = new Blob([checklist], { type: 'text/plain' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'DJ_Tech_Rider_Checklist.txt';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);
+        }
+
+        
+
+
+
+        // Enhanced UX Functions
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        function showBackToTop() {
+            const backToTop = document.getElementById('backToTop');
+            if (window.scrollY > 300) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        }
+
+        function hideLoadingScreen() {
+            const loadingScreen = document.getElementById('loadingScreen');
+            setTimeout(() => {
+                loadingScreen.classList.add('hidden');
+                setTimeout(() => {
+                    loadingScreen.style.display = 'none';
+                }, 500);
+            }, 1000);
+        }
+
+        function addClickFeedback(element) {
+            element.addEventListener('click', function(e) {
+                const ripple = document.createElement('span');
+                const rect = this.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                const x = e.clientX - rect.left - size / 2;
+                const y = e.clientY - rect.top - size / 2;
+                
+                ripple.style.width = ripple.style.height = size + 'px';
+                ripple.style.left = x + 'px';
+                ripple.style.top = y + 'px';
+                ripple.classList.add('ripple');
+                
+                this.appendChild(ripple);
+                
+                setTimeout(() => {
+                    ripple.remove();
+                }, 600);
+            });
+        }
+
+        function addHoverEffects() {
+            // Add hover effects to all interactive elements
+            const interactiveElements = document.querySelectorAll('.event-tab, .download-btn, .requirement-card, .event-option');
+            interactiveElements.forEach(element => {
+                element.addEventListener('mouseenter', function() {
+                    this.style.transform = this.style.transform + ' scale(1.02)';
+                });
+                
+                element.addEventListener('mouseleave', function() {
+                    this.style.transform = this.style.transform.replace(' scale(1.02)', '');
+                });
+            });
+        }
+
+        function addSmoothScrolling() {
+            // Add smooth scrolling to all internal links
+            const links = document.querySelectorAll('a[href^="#"]');
+            links.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        }
+
+        function addKeyboardNavigation() {
+            // Add keyboard navigation for tabs
+            document.addEventListener('keydown', function(e) {
+                if (e.key === '1' && e.ctrlKey) {
+                    e.preventDefault();
+                    selectEventTab('club');
+                } else if (e.key === '2' && e.ctrlKey) {
+                    e.preventDefault();
+                    selectEventTab('festival');
+                }
+            });
+        }
+
+        function addProgressIndicator() {
+            // Add reading progress indicator
+            const progressBar = document.createElement('div');
+            progressBar.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 0%;
+                height: 3px;
+                background: linear-gradient(90deg, #ffffff, #cccccc);
+                z-index: 1001;
+                transition: width 0.3s ease;
+            `;
+            document.body.appendChild(progressBar);
+
+            window.addEventListener('scroll', function() {
+                const scrollTop = window.scrollY;
+                const docHeight = document.body.scrollHeight - window.innerHeight;
+                const scrollPercent = (scrollTop / docHeight) * 100;
+                progressBar.style.width = scrollPercent + '%';
+            });
+        }
+
+        // CSS Isolation Enforcement - Simplified
+        function enforceCSSIsolation() {
+            const isolationWrapper = document.querySelector('.dj-tech-rider-isolation');
+            if (isolationWrapper) {
+                // Apply basic isolation styles
+                isolationWrapper.style.setProperty('position', 'relative', 'important');
+                isolationWrapper.style.setProperty('z-index', '9999', 'important');
+                isolationWrapper.style.setProperty('isolation', 'isolate', 'important');
+            }
+        }
+
+        // Monitor for external CSS interference - Simplified
+        function monitorCSSInterference() {
+            // Only monitor for major external stylesheet additions
+            const observer = new MutationObserver(function(mutations) {
+                mutations.forEach(function(mutation) {
+                    if (mutation.type === 'childList') {
+                        mutation.addedNodes.forEach(function(node) {
+                            if (node.tagName === 'LINK' && node.rel === 'stylesheet') {
+                                // External stylesheet detected, apply basic protection
+                                setTimeout(enforceCSSIsolation, 100);
+                            }
+                        });
+                    }
+                });
+            });
+
+            observer.observe(document.head, {
+                childList: true,
+                subtree: true
+            });
+        }
+
+        // Initialize with enhanced UX and CSS protection
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM Content Loaded - Enhanced UX JavaScript with CSS protection is working!');
+            
+            // Enforce CSS isolation immediately
+            enforceCSSIsolation();
+            
+            // Monitor for external CSS interference
+            monitorCSSInterference();
+            
+            // Hide loading screen
+            hideLoadingScreen();
+            
+            // Show welcome page by default
+            document.getElementById('welcomeContent').style.display = 'block';
+            document.getElementById('mainContent').style.display = 'none';
+            document.getElementById('clubContent').style.display = 'none';
+            document.getElementById('festivalContent').style.display = 'none';
+            
+            // No active tab initially
+            document.querySelectorAll('.event-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Set initial event type (but don't show content yet)
+            currentEventType = 'club';
+            
+            // Initialize tab content for when tabs are clicked
+            updateTabContentForLanguage(currentLanguage);
+            
+            // Add enhanced UX features
+            addHoverEffects();
+            addSmoothScrolling();
+            addKeyboardNavigation();
+            addProgressIndicator();
+            
+            // Add scroll event listener for back to top button
+            window.addEventListener('scroll', showBackToTop);
+            
+            // Add click feedback to buttons
+            const buttons = document.querySelectorAll('.event-tab, .download-btn, .language-btn');
+            buttons.forEach(addClickFeedback);
+            
+            // Add focus management for accessibility
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Tab') {
+                    document.body.classList.add('keyboard-navigation');
+                }
+            });
+            
+            document.addEventListener('mousedown', function() {
+                document.body.classList.remove('keyboard-navigation');
+            });
+
+
+            
+            // Apply CSS isolation once on load
+            setTimeout(enforceCSSIsolation, 100);
+        });
+    </script>
+        </div>
+    </div>
+    </div>
+</body>
+</html> 
