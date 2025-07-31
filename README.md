@@ -125,31 +125,26 @@ sudo systemctl restart nginx
 
 Once deployed with Docker, you can embed the calendar in Nicepage using:
 
-### **HTTP Version (Port 3000):**
+### **Direct Access (Port 5000):**
 **Option 1: Direct URL**
 ```
-http://your-vps-ip:3000/calendar
+http://your-vps-ip:5000/calendar
 ```
 
 **Option 2: Iframe Embed**
 ```html
-<iframe src="http://your-vps-ip:3000/calendar" width="100%" height="600px" frameborder="0"></iframe>
+<iframe src="http://your-vps-ip:5000/calendar" width="100%" height="600px" frameborder="0"></iframe>
 ```
 
-### **HTTPS Version (Recommended):**
+### **With NPMplus Proxy (Recommended):**
 **Option 1: Direct URL**
-```
-https://your-domain.com/calendar
-```
-
-**Option 2: Iframe Embed**
-```html
-<iframe src="https://your-domain.com/calendar" width="100%" height="600px" frameborder="0"></iframe>
-```
-
-**Option 3: With Custom Domain**
 ```
 https://calendar.yourdomain.com/calendar
+```
+
+**Option 2: Iframe Embed**
+```html
+<iframe src="https://calendar.yourdomain.com/calendar" width="100%" height="600px" frameborder="0"></iframe>
 ```
 
 ## 📁 Files Created
