@@ -4,7 +4,6 @@
 README.md
 deploy.sh
 calendar.service
-nginx.conf
 event_calendar.html
 venv/
 .venv/
