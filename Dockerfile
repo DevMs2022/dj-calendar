@@ -14,7 +14,6 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy application files
 COPY event_calendar_minified.html .
-COPY 404.html .
 COPY server.py .
 
 # Copy nginx configuration
