@@ -5,7 +5,7 @@ services:
     build: .
     container_name: dj-calendar
     ports:
-      - "80:80"
+      - "8080:80"
       - "5000:5000"
     restart: unless-stopped
     environment:

@@ -94,17 +94,17 @@ Once deployed with Docker, you can embed the calendar in Nicepage using:
 
 **Option 1: Direct URL**
 ```
-http://your-vps-ip/calendar
+http://your-vps-ip:8080/calendar
 ```
 
 **Option 2: Iframe Embed**
 ```html
-<iframe src="http://your-vps-ip/calendar" width="100%" height="600px" frameborder="0"></iframe>
+<iframe src="http://your-vps-ip:8080/calendar" width="100%" height="600px" frameborder="0"></iframe>
 ```
 
 **Option 3: With Domain (if you have one)**
 ```
-http://your-domain.com/calendar
+http://your-domain.com:8080/calendar
 ```
 
 ## 📁 Files Created
