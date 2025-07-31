@@ -11,6 +11,224 @@
                 padding: 0;
                 box-sizing: border-box;
             }
+            
+            /* Mobile-first responsive design */
+            @media (max-width: 768px) {
+                html, body {
+                    font-size: 14px !important;
+                    overflow-x: hidden !important;
+                    width: 100% !important;
+                    max-width: 100% !important;
+                }
+                
+                .header {
+                    padding: 2rem 1rem !important;
+                }
+                
+                .header h1 {
+                    font-size: 2rem !important;
+                    letter-spacing: 2px !important;
+                }
+                
+                .header p {
+                    font-size: 1rem !important;
+                    letter-spacing: 1px !important;
+                }
+                
+                .content {
+                    padding: 2rem 1rem !important;
+                }
+                
+                .section {
+                    padding-left: 1rem !important;
+                    margin-bottom: 2rem !important;
+                }
+                
+                .section h2 {
+                    font-size: 1.4rem !important;
+                }
+                
+                .event-card {
+                    flex-direction: column !important;
+                    height: auto !important;
+                    min-height: 200px !important;
+                }
+                
+                .event-date {
+                    width: 100% !important;
+                    height: 80px !important;
+                    flex-direction: row !important;
+                    justify-content: center !important;
+                    border-radius: 12px 12px 0 0 !important;
+                    border-right: 2px solid #ffffff !important;
+                    border-bottom: none !important;
+                    padding: 1rem !important;
+                }
+                
+                .event-day {
+                    font-size: 2rem !important;
+                    margin-bottom: 0 !important;
+                    margin-right: 0.5rem !important;
+                }
+                
+                .event-month {
+                    font-size: 0.8rem !important;
+                }
+                
+                .event-details {
+                    padding: 1rem !important;
+                    border-left: none !important;
+                    border-top: 2px solid #333 !important;
+                }
+                
+                .event-title {
+                    font-size: 1.2rem !important;
+                    margin-bottom: 0.5rem !important;
+                }
+                
+                .event-venue {
+                    font-size: 0.9rem !important;
+                }
+                
+                .event-time {
+                    font-size: 0.9rem !important;
+                }
+                
+                .event-status {
+                    font-size: 0.8rem !important;
+                    padding: 0.3rem 0.8rem !important;
+                }
+                
+                .modal {
+                    padding: 1rem !important;
+                }
+                
+                .modal-content {
+                    width: 95% !important;
+                    max-width: 95% !important;
+                    margin: 2rem auto !important;
+                    padding: 1.5rem !important;
+                }
+                
+                .modal-header h2 {
+                    font-size: 1.4rem !important;
+                }
+                
+                .modal-body {
+                    font-size: 0.9rem !important;
+                }
+                
+                .close {
+                    font-size: 1.5rem !important;
+                    top: 0.5rem !important;
+                    right: 1rem !important;
+                }
+            }
+            
+            @media (max-width: 480px) {
+                .header h1 {
+                    font-size: 1.8rem !important;
+                }
+                
+                .header p {
+                    font-size: 0.9rem !important;
+                }
+                
+                .event-card {
+                    min-height: 180px !important;
+                }
+                
+                .event-date {
+                    height: 70px !important;
+                    padding: 0.8rem !important;
+                }
+                
+                .event-day {
+                    font-size: 1.8rem !important;
+                }
+                
+                .event-month {
+                    font-size: 0.7rem !important;
+                }
+                
+                .event-title {
+                    font-size: 1.1rem !important;
+                }
+                
+                .modal-content {
+                    width: 98% !important;
+                    margin: 1rem auto !important;
+                    padding: 1rem !important;
+                }
+            }
+            
+            @media (max-width: 320px) {
+                .header h1 {
+                    font-size: 1.5rem !important;
+                }
+                
+                .event-date {
+                    height: 60px !important;
+                    padding: 0.6rem !important;
+                }
+                
+                .event-day {
+                    font-size: 1.5rem !important;
+                }
+                
+                .event-title {
+                    font-size: 1rem !important;
+                }
+            }
+            
+            /* Touch-friendly interactions for mobile */
+            @media (hover: none) and (pointer: coarse) {
+                .event-card {
+                    cursor: pointer !important;
+                }
+                
+                .event-card:active {
+                    transform: scale(0.98) !important;
+                }
+                
+                .close:active {
+                    transform: scale(0.9) !important;
+                }
+            }
+            
+            /* Landscape orientation adjustments */
+            @media (max-width: 768px) and (orientation: landscape) {
+                .header {
+                    padding: 1rem !important;
+                }
+                
+                .header h1 {
+                    font-size: 1.8rem !important;
+                }
+                
+                .content {
+                    padding: 1rem !important;
+                }
+                
+                .event-card {
+                    height: 120px !important;
+                    flex-direction: row !important;
+                }
+                
+                .event-date {
+                    width: 100px !important;
+                    height: 100% !important;
+                    flex-direction: column !important;
+                    border-radius: 12px 0 0 12px !important;
+                    border-right: none !important;
+                    border-bottom: 2px solid #ffffff !important;
+                }
+                
+                .event-details {
+                    border-left: 2px solid #333 !important;
+                    border-top: none !important;
+                }
+            }
             html, body {
                 margin: 0 !important;
                 padding: 0 !important;

@@ -1,192 +1,168 @@
-# DJ Event Calendar - Docker Deployment
+# DJ Calendar - Docker Deployment
 
-This setup allows you to host your DJ Event Calendar on a VPS using Docker and embed it in Nicepage using a URL.
+A Docker-deployable DJ event calendar that fetches events from Google Calendar API.
 
-## 🐳 Quick Docker Setup
+## 🚀 Quick Start
 
-1. **Upload files to your VPS:**
+### Local Development
+```bash
+# Clone the repository
+git clone https://github.com/DevMs2022/dj-calendar.git
+cd dj-calendar
+
+# Run with Docker Compose
+docker compose up -d --build
+
+# Access the calendar
+open http://localhost:3000
+```
+
+### VPS Deployment
+```bash
+# SSH to your VPS
+ssh ubuntu@your-vps-ip
+
+# Clone and deploy
+git clone https://github.com/DevMs2022/dj-calendar.git /opt/dj-calendar
+cd /opt/dj-calendar
+docker compose up -d --build
+```
+
+## 📋 Requirements
+
+- Docker & Docker Compose
+- Python 3.11+
+- Flask 3.0.0
+- Google Calendar API access
+
+## 🔧 Configuration
+
+### Environment Variables
+- `PORT`: Server port (default: 5000)
+- `GOOGLE_CALENDAR_ID`: Your Google Calendar ID
+
+### Port Mapping
+- **Local:** `3000:5000` (host:container)
+- **VPS:** `3000:5000` (host:container)
+
+## 🌐 Access URLs
+
+- **Local:** `http://localhost:3000`
+- **VPS:** `http://your-vps-ip:3000`
+- **Domain:** `https://calendar.djmarkuss.de`
+
+## 📱 Embedding
+
+### Full Width & Height Iframe
+```html
+<iframe 
+    src="https://calendar.djmarkuss.de" 
+    style="width: 100vw; height: 100vh; border: none; margin: 0; padding: 0; position: fixed; top: 0; left: 0; z-index: 1000;"
+    frameborder="0"
+    allowfullscreen>
+</iframe>
+```
+
+### Responsive Iframe (Recommended)
+```html
+<iframe 
+    src="https://calendar.djmarkuss.de" 
+    style="width: 100%; height: 100vh; border: none; margin: 0; padding: 0;"
+    frameborder="0"
+    allowfullscreen>
+</iframe>
+```
+
+### Standard Iframe
+```html
+<iframe 
+    src="https://calendar.djmarkuss.de" 
+    width="100%" 
+    height="600px" 
+    frameborder="0">
+</iframe>
+```
+
+## 🔒 Security
+
+- **X-Frame-Options:** `ALLOWALL` (allows iframe embedding)
+- **Content-Security-Policy:** Configured for Google Calendar API
+- **HTTPS:** Supported via NPMplus proxy
+
+## 🛠️ Maintenance
+
+### Update Calendar
+```bash
+# Pull latest changes
+git pull origin master
+
+# Rebuild and restart
+docker compose down
+docker compose up -d --build
+```
+
+### Check Status
+```bash
+# Container status
+docker ps | grep dj-calendar
+
+# Container logs
+docker logs dj-calendar
+```
+
+## 📁 File Structure
+
+```
+dj-calendar/
+├── event_calendar.html          # Original calendar file
+├── event_calendar_minified.html # Minified version for deployment
+├── server.py                    # Flask server
+├── requirements.txt             # Python dependencies
+├── Dockerfile                   # Docker image definition
+├── docker-compose.yml          # Docker Compose configuration
+├── nginx-npmplus.conf          # Nginx config for NPMplus
+└── README.md                   # This file
+```
+
+## 🐛 Troubleshooting
+
+### Common Issues
+
+1. **Port already in use:**
    ```bash
-   scp -r . user@your-vps-ip:/path/to/calendar/
+   # Check what's using the port
+   sudo netstat -tlnp | grep :3000
+   
+   # Change port in docker-compose.yml
+   ports:
+     - "8080:5000"  # Use different host port
    ```
 
-2. **SSH into your VPS and run:**
+2. **Container won't start:**
    ```bash
-   cd /path/to/calendar/
-   ./docker-deploy.sh
+   # Check logs
+   docker logs dj-calendar
+   
+   # Rebuild from scratch
+   docker compose down
+   docker system prune -f
+   docker compose up -d --build
    ```
 
-3. **That's it!** The script will:
-   - Install Docker if needed
-   - Build and start the container
-   - Show you the access URLs
+3. **Calendar not loading:**
+   - Check Google Calendar API credentials
+   - Verify calendar ID is correct
+   - Check browser console for errors
 
-## 🚀 Manual Docker Setup
+## 📞 Support
 
-### HTTP Setup (Port 3000)
+For issues or questions:
+1. Check the troubleshooting section
+2. Review container logs
+3. Verify network connectivity
+4. Test with different browsers
 
-#### 1. Install Docker (if not already installed)
-```bash
-curl -fsSL https://get.docker.com -o get-docker.sh
-sudo sh get-docker.sh
-sudo usermod -aG docker $USER
-# Log out and back in
-```
+---
 
-#### 2. Build and Run
-```bash
-# Build the image
-docker build -t dj-calendar .
-
-# Run the container
-docker run -d -p 3000:80 --name dj-calendar dj-calendar
-```
-
-#### 3. Using Docker Compose (Recommended)
-```bash
-# Start the application
-docker-compose up -d
-
-# View logs
-docker-compose logs -f
-
-# Stop the application
-docker-compose down
-```
-
-### HTTPS Setup (Recommended for Production)
-
-#### 1. Deploy with HTTPS
-```bash
-# Run the HTTPS deployment script
-./deploy-https.sh
-
-# Follow the prompts to enter your domain and email
-```
-
-#### 2. Manual HTTPS Setup
-```bash
-# Create necessary directories
-mkdir -p logs ssl certbot/conf certbot/www
-
-# Update configuration files with your domain
-# Edit docker-compose-dhttps.yml and nginx-https.conf
-
-# Deploy with HTTPS
-docker-compose -f docker-compose-https.yml up -d
-```
-
-#### 3. SSL Certificate Management
-```bash
-# Renew SSL certificates
-docker-compose -f docker-compose-https.yml run certbot renew
-
-# Check certificate status
-docker-compose -f docker-compose-https.yml run certbot certificates
-```
-
-## Manual Setup (Alternative)
-
-### 1. Install Dependencies
-```bash
-sudo apt update
-sudo apt install -y python3 python3-pip python3-venv nginx
-```
-
-### 2. Set Up Python Environment
-```bash
-python3 -m venv venv
-source venv/bin/activate
-pip install -r requirements.txt
-```
-
-### 3. Test the Server
-```bash
-python server.py
-```
-Visit: `http://your-vps-ip:3000`
-
-### 4. Set Up as Service
-```bash
-sudo cp calendar.service /etc/systemd/system/
-sudo systemctl daemon-reload
-sudo systemctl enable calendar.service
-sudo systemctl start calendar.service
-```
-
-### 5. Configure Nginx (Optional)
-```bash
-sudo cp nginx.conf /etc/nginx/sites-available/calendar
-sudo ln -sf /etc/nginx/sites-available/calendar /etc/nginx/sites-enabled/
-sudo nginx -t
-sudo systemctl restart nginx
-```
-
-## 🌐 Nicepage Embed
-
-Once deployed with Docker, you can embed the calendar in Nicepage using:
-
-### **Direct Access (Port 5000):**
-**Option 1: Direct URL**
-```
-http://your-vps-ip:3000/calendar
-```
-
-**Option 2: Iframe Embed**
-```html
-<iframe src="http://your-vps-ip:3000/calendar" width="100%" height="600px" frameborder="0"></iframe>
-```
-
-### **With NPMplus Proxy (Recommended):**
-**Option 1: Direct URL**
-```
-https://calendar.yourdomain.com/calendar
-```
-
-**Option 2: Iframe Embed**
-```html
-<iframe src="https://calendar.yourdomain.com/calendar" width="100%" height="600px" frameborder="0"></iframe>
-```
-
-## 📁 Files Created
-
-### Docker Files
-- `Dockerfile` - Docker image configuration
-- `docker-compose.yml` - Docker Compose configuration (HTTP)
-- `Dockerfile-https` - Docker image configuration with HTTPS
-- `docker-compose-https.yml` - Docker Compose configuration (HTTPS)
-- `.dockerignore` - Files to exclude from Docker build
-- `docker-deploy.sh` - Automated Docker deployment script (HTTP)
-- `deploy-https.sh` - Automated Docker deployment script (HTTPS)
-
-### Application Files
-- `server.py` - Flask web server
-- `requirements.txt` - Python dependencies
-- `nginx.conf` - Nginx configuration (HTTP)
-- `nginx-https.conf` - Nginx configuration (HTTPS with SSL)
-- `event_calendar_minified.html` - Minified calendar file
-
-## Security Notes
-
-- Update the nginx configuration with your actual domain
-- Consider adding SSL/HTTPS with Let's Encrypt
-- Set up firewall rules to only allow necessary ports
-- Use a non-root user for the service
-
-## 🔧 Troubleshooting
-
-### Docker Commands
-- Check container status: `docker-compose ps`
-- View logs: `docker-compose logs -f`
-- Restart container: `docker-compose restart`
-- Stop and remove: `docker-compose down`
-
-### Manual Docker Commands
-- Check running containers: `docker ps`
-- View container logs: `docker logs dj-calendar`
-- Access container shell: `docker exec -it dj-calendar bash`
-- Check container resources: `docker stats dj-calendar`
-
-### Network Issues
-- Check if port 80 is open: `sudo netstat -tlnp | grep :80`
-- Test nginx inside container: `docker exec dj-calendar nginx -t`
-- Check firewall: `sudo ufw status` 
+**Last Updated:** July 31, 2025
+**Version:** 1.0.0 
