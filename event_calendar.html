@@ -87,10 +87,10 @@
                 box-sizing: border-box !important;
             }
 
-            /* Removed smooth transitions for all interactive elements */
-            /* * {
+            /* Smooth transitions for all interactive elements */
+            * {
                 transition: all 0.3s ease;
-            } */
+            }
 
             /* Scrollbar styling */
             ::-webkit-scrollbar {
@@ -190,8 +190,8 @@
                 text-transform: uppercase !important;
             }
 
-            /* Removed fadeInUp animation */
-            /* @keyframes fadeInUp {
+            /* fadeInUp animation */
+            @keyframes fadeInUp {
                 from {
                     opacity: 0;
                     transform: translateY(30px);
@@ -200,7 +200,7 @@
                     opacity: 1;
                     transform: translateY(0);
                 }
-            } */
+            }
 
             .content {
                 padding: 3rem 4rem !important;
@@ -248,8 +248,8 @@
                 height: 180px;
             }
 
-            /* Removed event-card animations */
-            /* .event-card::before {
+            /* event-card animations */
+            .event-card::before {
                 content: '';
                 position: absolute;
                 top: 0;
@@ -269,12 +269,12 @@
                 transform: translateY(-5px) scale(1.02);
                 box-shadow: 0 10px 25px rgba(255, 255, 255, 0.2);
                 background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 50%, #1a1a1a 100%);
-            } */
+            }
 
-            /* Removed hover effect for event-details */
-            /* .event-card:hover .event-details {
+            /* hover effect for event-details */
+            .event-card:hover .event-details {
                 border-left-color: #ffffff;
-            } */
+            }
 
             .event-date {
                 display: flex;
@@ -297,8 +297,8 @@
                 flex-shrink: 0;
             }
 
-            /* Removed event-date animations */
-            /* .event-date::before {
+            /* event-date animations */
+            .event-date::before {
                 content: '';
                 position: absolute;
                 top: 0;
@@ -315,7 +315,7 @@
 
             .event-date:hover {
                 box-shadow: 0 8px 25px rgba(255, 255, 255, 0.3);
-            } */
+            }
 
             .event-day {
                 font-size: 2.5rem;
@@ -519,12 +519,12 @@
                 font-size: 0.75rem;
             }
 
-            /* Removed ticket-btn hover animation */
-            /* .ticket-btn:hover {
+            /* ticket-btn hover animation */
+            .ticket-btn:hover {
                 background: #00cc00;
                 border-color: #00cc00;
                 box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
-            } */
+            }
 
             .onsite-btn {
                 background: #ff6600;
@@ -542,20 +542,20 @@
                 font-size: 0.7rem;
             }
 
-            /* Removed onsite-btn hover animation */
-            /* .onsite-btn:hover {
+            /* onsite-btn hover animation */
+            .onsite-btn:hover {
                 background: #ff4400;
                 border-color: #ff4400;
                 box-shadow: 0 0 20px rgba(255, 102, 0, 0.5);
-            } */
+            }
 
-            /* Removed more-info-btn hover animation */
-            /* .more-info-btn:hover {
+            /* more-info-btn hover animation */
+            .more-info-btn:hover {
                 background: #000000;
                 color: #ffffff;
                 transform: translateY(-2px);
                 box-shadow: 0 5px 20px rgba(255, 255, 255, 0.3);
-            } */
+            }
 
             /* Event Details Modal */
             .modal-overlay {
@@ -576,11 +576,11 @@
                 display: flex;
             }
 
-            /* Removed fadeIn animation */
-            /* @keyframes fadeIn {
+            /* fadeIn animation */
+            @keyframes fadeIn {
                 from { opacity: 0; }
                 to { opacity: 1; }
-            } */
+            }
 
             .modal-content {
                 background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0a0a0a 100%);
@@ -594,8 +594,8 @@
                 box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
             }
 
-            /* Removed slideIn animation */
-            /* @keyframes slideIn {
+            /* slideIn animation */
+            @keyframes slideIn {
                 from { 
                     opacity: 0;
                     transform: translateY(-50px) scale(0.9);
@@ -604,7 +604,7 @@
                     opacity: 1;
                     transform: translateY(0) scale(1);
                 }
-            } */
+            }
 
             .modal-header {
                 background: linear-gradient(135deg, #000000 0%, #0a0a0a 50%, #000000 100%);
@@ -634,13 +634,13 @@
                 font-weight: bold;
             }
 
-            /* Removed modal-close hover animation */
-            /* .modal-close:hover {
+            /* modal-close hover animation */
+            .modal-close:hover {
                 background: #ffffff;
                 color: #000000;
                 transform: scale(1.1);
                 box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
-            } */
+            }
 
             .modal-title {
                 font-size: 1.6rem;
@@ -733,13 +733,13 @@
                 gap: 0.5rem;
             }
 
-            /* Removed action-btn hover animation */
-            /* .action-btn:hover {
+            /* action-btn hover animation */
+            .action-btn:hover {
                 background: #ffffff;
                 color: #000000;
                 transform: translateY(-2px);
                 box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
-            } */
+            }
 
             .action-btn.primary {
                 background: #ffffff;
@@ -748,13 +748,13 @@
                 box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
             }
 
-            /* Removed action-btn.primary hover animation */
-            /* .action-btn.primary:hover {
+            /* action-btn.primary hover animation */
+            .action-btn.primary:hover {
                 background: #000000;
                 color: #ffffff;
                 border-color: #ffffff;
                 box-shadow: 0 0 25px rgba(255, 255, 255, 0.3);
-            } */
+            }
 
             .event-status-badge {
                 display: inline-block;
@@ -855,8 +855,8 @@
                 overflow: hidden;
             }
 
-            /* Removed refresh-btn animations */
-            /* .refresh-btn::before {
+            /* refresh-btn animations */
+            .refresh-btn::before {
                 content: '';
                 position: absolute;
                 top: 0;
@@ -876,7 +876,7 @@
                 transform: translateY(-2px);
                 box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
                 background: linear-gradient(135deg, #222222 0%, #2a2a2a 100%);
-            } */
+            }
 
             .api-setup {
                 background: #1a1a1a;
@@ -907,6 +907,52 @@
                 padding: 0.2rem 0.4rem;
                 border-radius: 3px;
                 font-family: 'Courier New', monospace;
+            }
+
+            /* Loading State Styles */
+            .loading-container {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                padding: 4rem 2rem;
+                text-align: center;
+                background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0a0a0a 100%);
+                border: 2px solid #333;
+                border-radius: 12px;
+                margin: 2rem 0;
+                min-height: 200px;
+            }
+
+            .loading-spinner {
+                width: 50px;
+                height: 50px;
+                border: 4px solid #333;
+                border-top: 4px solid #ffffff;
+                border-radius: 50%;
+                animation: spin 1s linear infinite;
+                margin-bottom: 1.5rem;
+            }
+
+            @keyframes spin {
+                0% { transform: rotate(0deg); }
+                100% { transform: rotate(360deg); }
+            }
+
+            .loading-text {
+                font-size: 1.2rem;
+                font-weight: 600;
+                color: #ffffff;
+                margin-bottom: 0.5rem;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+            }
+
+            .loading-status {
+                font-size: 0.9rem;
+                color: #cccccc;
+                font-weight: 400;
+                opacity: 0.8;
             }
 
             /* Improved mobile responsiveness */
@@ -986,14 +1032,23 @@
         <div class="dj-calendar-isolation">
             <div class="container">
                 <div class="header">
-                    <h1>TIME TO PARTY</h1>
+                    <h1 class="hero-title">TIME TO PARTY</h1>
                     <p>The best events of the season!</p>
                 </div>
 
                 <div class="content">
                     <div class="section">
                         <h2>Upcoming Events</h2>
-                        <div id="eventsList">
+                        
+                        <!-- Loading State -->
+                        <div id="loadingState" class="loading-container">
+                            <div class="loading-spinner"></div>
+                            <div class="loading-text">Loading events...</div>
+                            <div class="loading-status" id="loadingStatus">Connecting to calendar...</div>
+                        </div>
+                        
+                        <!-- Events List -->
+                        <div id="eventsList" style="display: none;">
                         </div>
                     </div>
                 </div>
@@ -1001,8 +1056,8 @@
         </div>
 
         <!-- Event Details Modal -->
-        <div id="eventModal" class="modal-overlay">
-            <div class="modal-content">
+        <div id="eventModal" class="modal-overlay" style="animation: fadeIn 0.3s ease-out;">
+            <div class="modal-content" style="animation: slideIn 0.3s ease-out;">
                 <div class="modal-header">
                     <button class="modal-close" onclick="closeEventModal()">&times;</button>
                     <div class="modal-title" id="modalTitle">Event Title</div>
@@ -1092,6 +1147,33 @@
 
             let currentDate = new Date();
 
+            // ========================================
+            // LOADING STATE FUNCTIONS
+            // ========================================
+            
+            function showLoading() {
+                const loadingState = document.getElementById('loadingState');
+                const eventsList = document.getElementById('eventsList');
+                
+                loadingState.style.display = 'flex';
+                eventsList.style.display = 'none';
+            }
+            
+            function hideLoading() {
+                const loadingState = document.getElementById('loadingState');
+                const eventsList = document.getElementById('eventsList');
+                
+                loadingState.style.display = 'none';
+                eventsList.style.display = 'block';
+            }
+            
+            function updateLoadingStatus(message) {
+                const loadingStatus = document.getElementById('loadingStatus');
+                if (loadingStatus) {
+                    loadingStatus.textContent = message;
+                }
+            }
+
             // Initialize events
             document.addEventListener('DOMContentLoaded', function() {
                 // Check if API key is configured
@@ -1149,7 +1231,12 @@
             
             async function loadEvents() {
                 try {
+                    // Show loading state
+                    showLoading();
+                    updateLoadingStatus('Connecting to Google Calendar...');
+                    
                     // Fetch events from API
+                    updateLoadingStatus('Fetching events...');
                     const events = await fetchGoogleCalendarEvents();
                     
                     // Add sample events if API returns empty
@@ -1182,10 +1269,13 @@
                     // Update global state
                     window.events = finalEvents;
                     
-                    // Display events
+                    // Hide loading and display events
+                    updateLoadingStatus('Displaying events...');
+                    hideLoading();
                     displayEvents();
                     
                 } catch (error) {
+                    hideLoading();
                     showError('Failed to load events from Google Calendar API', error.message);
                 }
             }
@@ -1226,6 +1316,7 @@
                 };
                 
                 try {
+                    updateLoadingStatus('Making API request...');
                     const response = await fetchWithTimeout(url, {
                         method: 'GET',
                         headers: {
@@ -1246,6 +1337,7 @@
                         }
                     }
                     
+                    updateLoadingStatus('Processing response...');
                     const data = await response.json();
                     
                     if (!data.items) {
@@ -1438,43 +1530,32 @@
                 
                 modalStatus.innerHTML = `<span class="event-status-badge ${statusClass}">${statusText}</span>`;
 
-                // Set description
                 modalDescription.textContent = event.description || 'No description available.';
-
-                // Set action links
                 if (event.htmlLink) {
                     modalGoogleLink.href = event.htmlLink;
                 } else {
                     modalGoogleLink.style.display = 'none';
                 }
 
-                // Create "Add to Calendar" link
                 const icsContent = createICSContent(event);
                 const blob = new Blob([icsContent], { type: 'text/calendar' });
                 const url = URL.createObjectURL(blob);
                 modalAddToCalendar.href = url;
                 modalAddToCalendar.download = `${event.title.replace(/[^a-z0-9]/gi, '_')}.ics`;
-
-                // Show modal
                 modal.classList.add('active');
                 document.body.style.overflow = 'hidden';
             }
-
             function closeEventModal() {
                 const modal = document.getElementById('eventModal');
                 modal.classList.remove('active');
                 document.body.style.overflow = 'auto';
             }
-
             function createICSContent(event) {
                 const startDate = new Date(event.start);
                 const endDate = new Date(event.end);
-                
-                // Format dates for ICS
                 const formatICSDate = (date) => {
                     return date.toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
                 };
-
                 let icsContent = [
                     'BEGIN:VCALENDAR',
                     'VERSION:2.0',
@@ -1493,25 +1574,19 @@
                 return icsContent;
             }
 
-            // Close modal when clicking outside
             document.addEventListener('click', function(e) {
                 const modal = document.getElementById('eventModal');
                 if (e.target === modal) {
                     closeEventModal();
                 }
             });
-
-            // Close modal with Escape key
             document.addEventListener('keydown', function(e) {
                 if (e.key === 'Escape') {
                     closeEventModal();
                 }
             });
-
-            // Check if event is national (Germany) or international
             function isNationalEvent(location) {
                 if (!location) return false;
-                
                 const locationLower = location.toLowerCase();
                 const nationalKeywords = [
                     'germany', 'deutschland', 'berlin', 'munich', 'frankfurt', 'hamburg', 'cologne', 'köln',
@@ -1658,8 +1733,7 @@
                     'vietnam': '🇻🇳',
                     'ho chi minh': '🇻🇳',
                     'hanoi': '🇻🇳',
-                    
-                    // Oceania
+              
                     'australia': '🇦🇺',
                     'sydney': '🇦🇺',
                     'melbourne': '🇦🇺',
@@ -1668,8 +1742,7 @@
                     'new zealand': '🇳🇿',
                     'auckland': '🇳🇿',
                     'wellington': '🇳🇿',
-                    
-                    // Africa
+               
                     'south africa': '🇿🇦',
                     'johannesburg': '🇿🇦',
                     'cape town': '🇿🇦',
@@ -1683,7 +1756,7 @@
                     'casablanca': '🇲🇦',
                     'marrakech': '🇲🇦',
                     
-                    // Middle East
+               
                     'uae': '🇦🇪',
                     'united arab emirates': '🇦🇪',
                     'dubai': '🇦🇪',
@@ -1700,15 +1773,12 @@
                     'riyadh': '🇸🇦',
                     'jeddah': '🇸🇦'
                 };
-                
-                // Check for exact matches first
                 for (const [country, flag] of Object.entries(countryFlags)) {
                     if (locationLower.includes(country)) {
                         return flag;
                     }
                 }
-                
-                // Check for common country codes
+
                 const countryCodes = {
                     'nl': '🇳🇱', 'de': '🇩🇪', 'fr': '🇫🇷', 'es': '🇪🇸', 'it': '🇮🇹', 'gb': '🇬🇧', 'uk': '🇬🇧',
                     'be': '🇧🇪', 'ch': '🇨🇭', 'at': '🇦🇹', 'pl': '🇵🇱', 'cz': '🇨🇿', 'hu': '🇭🇺', 'dk': '🇩🇰',
@@ -1718,25 +1788,18 @@
                     'my': '🇲🇾', 'ph': '🇵🇭', 'vn': '🇻🇳', 'au': '🇦🇺', 'nz': '🇳🇿', 'za': '🇿🇦', 'ng': '🇳🇬',
                     'eg': '🇪🇬', 'ke': '🇰🇪', 'ma': '🇲🇦', 'ae': '🇦🇪', 'il': '🇮🇱', 'tr': '🇹🇷', 'qa': '🇶🇦', 'sa': '🇸🇦'
                 };
-                
-                // Check for country codes in the location
                 for (const [code, flag] of Object.entries(countryCodes)) {
                     if (locationLower.includes(code.toLowerCase())) {
                         return flag;
                     }
                 }
-                
-                // Default to world flag if no match found
                 return '🌍';
             }
-
-            // Make functions globally accessible
             window.loadEvents = loadEvents;
             window.displayEvents = displayEvents;
             window.fetchGoogleCalendarEvents = fetchGoogleCalendarEvents;
             window.showEventDetails = showEventDetails;
             window.closeEventModal = closeEventModal;
-
         </script>
     </body>
     </html> 

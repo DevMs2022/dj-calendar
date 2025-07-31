@@ -4,6 +4,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>DJ Event Calendar</title>
+        <!-- Removed debug script -->
         <style>
             @import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600&display=swap');
             * {
@@ -70,9 +71,9 @@
                 max-width: none !important;
                 box-sizing: border-box !important;
             }
-            /* * {
+            * {
                 transition: all 0.3s ease;
-            } */
+            }
             ::-webkit-scrollbar {
                 width: 8px;
             }
@@ -152,7 +153,7 @@
                 color: #ffffff !important;
                 text-transform: uppercase !important;
             }
-            /* @keyframes fadeInUp {
+            @keyframes fadeInUp {
                 from {
                     opacity: 0;
                     transform: translateY(30px);
@@ -161,7 +162,7 @@
                     opacity: 1;
                     transform: translateY(0);
                 }
-            } */
+            }
             .content {
                 padding: 3rem 4rem !important;
                 position: relative !important;
@@ -201,7 +202,7 @@
                 box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
                 height: 180px;
             }
-            /* .event-card::before {
+            .event-card::before {
                 content: '';
                 position: absolute;
                 top: 0;
@@ -219,10 +220,10 @@
                 transform: translateY(-5px) scale(1.02);
                 box-shadow: 0 10px 25px rgba(255, 255, 255, 0.2);
                 background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 50%, #1a1a1a 100%);
-            } */
-            /* .event-card:hover .event-details {
+            }
+            .event-card:hover .event-details {
                 border-left-color: #ffffff;
-            } */
+            }
             .event-date {
                 display: flex;
                 flex-direction: column;
@@ -243,7 +244,7 @@
                 border-right: none;
                 flex-shrink: 0;
             }
-            /* .event-date::before {
+            .event-date::before {
                 content: '';
                 position: absolute;
                 top: 0;
@@ -258,7 +259,7 @@
             }
             .event-date:hover {
                 box-shadow: 0 8px 25px rgba(255, 255, 255, 0.3);
-            } */
+            }
             .event-day {
                 font-size: 2.5rem;
                 font-weight: 900;
@@ -442,11 +443,11 @@
                 box-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
                 font-size: 0.75rem;
             }
-            /* .ticket-btn:hover {
+            .ticket-btn:hover {
                 background: #00cc00;
                 border-color: #00cc00;
                 box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
-            } */
+            }
             .onsite-btn {
                 background: #ff6600;
                 border: 2px solid #ff6600;
@@ -462,17 +463,17 @@
                 box-shadow: 0 0 15px rgba(255, 102, 0, 0.3);
                 font-size: 0.7rem;
             }
-            /* .onsite-btn:hover {
+            .onsite-btn:hover {
                 background: #ff4400;
                 border-color: #ff4400;
                 box-shadow: 0 0 20px rgba(255, 102, 0, 0.5);
-            } */
-            /* .more-info-btn:hover {
+            }
+            .more-info-btn:hover {
                 background: #000000;
                 color: #ffffff;
                 transform: translateY(-2px);
                 box-shadow: 0 5px 20px rgba(255, 255, 255, 0.3);
-            } */
+            }
             .modal-overlay {
                 position: fixed;
                 top: 0;
@@ -489,10 +490,10 @@
             .modal-overlay.active {
                 display: flex;
             }
-            /* @keyframes fadeIn {
+            @keyframes fadeIn {
                 from { opacity: 0; }
                 to { opacity: 1; }
-            } */
+            }
             .modal-content {
                 background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0a0a0a 100%);
                 border: 2px solid #333;
@@ -504,16 +505,16 @@
                 position: relative;
                 box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
             }
-            /* @keyframes slideIn {
-                from {
+            @keyframes slideIn {
+                from { 
                     opacity: 0;
                     transform: translateY(-50px) scale(0.9);
                 }
-                to {
+                to { 
                     opacity: 1;
                     transform: translateY(0) scale(1);
                 }
-            } */
+            }
             .modal-header {
                 background: linear-gradient(135deg, #000000 0%, #0a0a0a 50%, #000000 100%);
                 padding: 1.5rem;
@@ -538,12 +539,12 @@
                 font-size: 1.2rem;
                 font-weight: bold;
             }
-            /* .modal-close:hover {
+            .modal-close:hover {
                 background: #ffffff;
                 color: #000000;
                 transform: scale(1.1);
                 box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
-            } */
+            }
             .modal-title {
                 font-size: 1.6rem;
                 font-weight: 700;
@@ -623,24 +624,24 @@
                 align-items: center;
                 gap: 0.5rem;
             }
-            /* .action-btn:hover {
+            .action-btn:hover {
                 background: #ffffff;
                 color: #000000;
                 transform: translateY(-2px);
                 box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
-            } */
+            }
             .action-btn.primary {
                 background: #ffffff;
                 border-color: #ffffff;
                 color: #000000;
                 box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
             }
-            /* .action-btn.primary:hover {
+            .action-btn.primary:hover {
                 background: #000000;
                 color: #ffffff;
                 border-color: #ffffff;
                 box-shadow: 0 0 25px rgba(255, 255, 255, 0.3);
-            } */
+            }
             .event-status-badge {
                 display: inline-block;
                 padding: 0.5rem 1rem;
@@ -727,7 +728,7 @@
                 position: relative;
                 overflow: hidden;
             }
-            /* .refresh-btn::before {
+            .refresh-btn::before {
                 content: '';
                 position: absolute;
                 top: 0;
@@ -745,7 +746,7 @@
                 transform: translateY(-2px);
                 box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
                 background: linear-gradient(135deg, #222222 0%, #2a2a2a 100%);
-            } */
+            }
             .api-setup {
                 background: #1a1a1a;
                 border: 1px solid #333;
@@ -771,6 +772,46 @@
                 padding: 0.2rem 0.4rem;
                 border-radius: 3px;
                 font-family: 'Courier New', monospace;
+            }
+            .loading-container {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                padding: 4rem 2rem;
+                text-align: center;
+                background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0a0a0a 100%);
+                border: 2px solid #333;
+                border-radius: 12px;
+                margin: 2rem 0;
+                min-height: 200px;
+            }
+            .loading-spinner {
+                width: 50px;
+                height: 50px;
+                border: 4px solid #333;
+                border-top: 4px solid #ffffff;
+                border-radius: 50%;
+                animation: spin 1s linear infinite;
+                margin-bottom: 1.5rem;
+            }
+            @keyframes spin {
+                0% { transform: rotate(0deg); }
+                100% { transform: rotate(360deg); }
+            }
+            .loading-text {
+                font-size: 1.2rem;
+                font-weight: 600;
+                color: #ffffff;
+                margin-bottom: 0.5rem;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+            }
+            .loading-status {
+                font-size: 0.9rem;
+                color: #cccccc;
+                font-weight: 400;
+                opacity: 0.8;
             }
             @media (max-width: 768px) {
                 .header h1 {
@@ -832,20 +873,28 @@
         <div class="dj-calendar-isolation">
             <div class="container">
                 <div class="header">
-                    <h1>TIME TO PARTY</h1>
+                    <h1 class="hero-title">TIME TO PARTY</h1>
                     <p>The best events of the season!</p>
                 </div>
                 <div class="content">
                     <div class="section">
                         <h2>Upcoming Events</h2>
-                        <div id="eventsList">
+                        <!-- Loading State -->
+                        <div id="loadingState" class="loading-container">
+                            <div class="loading-spinner"></div>
+                            <div class="loading-text">Loading events...</div>
+                            <div class="loading-status" id="loadingStatus">Connecting to calendar...</div>
+                        </div>
+                        <!-- Events List -->
+                        <div id="eventsList" style="display: none;">
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div id="eventModal" class="modal-overlay">
-            <div class="modal-content">
+        <!-- Event Details Modal -->
+        <div id="eventModal" class="modal-overlay" style="animation: fadeIn 0.3s ease-out;">
+            <div class="modal-content" style="animation: slideIn 0.3s ease-out;">
                 <div class="modal-header">
                     <button class="modal-close" onclick="closeEventModal()">&times;</button>
                     <div class="modal-title" id="modalTitle">Event Title</div>
@@ -921,6 +970,27 @@
             // 6. Check "Make available to public"
             // 7. Set "See all event details" to "Make available to public"
             let currentDate = new Date();
+            // ========================================
+            // LOADING STATE FUNCTIONS
+            // ========================================
+            function showLoading() {
+                const loadingState = document.getElementById('loadingState');
+                const eventsList = document.getElementById('eventsList');
+                loadingState.style.display = 'flex';
+                eventsList.style.display = 'none';
+            }
+            function hideLoading() {
+                const loadingState = document.getElementById('loadingState');
+                const eventsList = document.getElementById('eventsList');
+                loadingState.style.display = 'none';
+                eventsList.style.display = 'block';
+            }
+            function updateLoadingStatus(message) {
+                const loadingStatus = document.getElementById('loadingStatus');
+                if (loadingStatus) {
+                    loadingStatus.textContent = message;
+                }
+            }
             // Initialize events
             document.addEventListener('DOMContentLoaded', function() {
                 // Check if API key is configured
@@ -972,7 +1042,11 @@
             }
             async function loadEvents() {
                 try {
+                    // Show loading state
+                    showLoading();
+                    updateLoadingStatus('Connecting to Google Calendar...');
                     // Fetch events from API
+                    updateLoadingStatus('Fetching events...');
                     const events = await fetchGoogleCalendarEvents();
                     // Add sample events if API returns empty
                     let finalEvents = events;
@@ -980,8 +1054,8 @@
                         finalEvents = [
                             {
                                 title: 'Sample Event 1',
-                                start: new Date(Date.now() + 24 * 60 * 60 * 1000),
-                                end: new Date(Date.now() + 24 * 60 * 60 * 1000 + 2 * 60 * 60 * 1000),
+                                start: new Date(Date.now()  24 * 60 * 60 * 1000),
+                                end: new Date(Date.now()  24 * 60 * 60 * 1000  2 * 60 * 60 * 1000),
                                 location: 'Sample Venue, Berlin, Germany',
                                 description: 'This is a sample event for testing purposes.',
                                 allDay: false,
@@ -990,8 +1064,8 @@
                             },
                             {
                                 title: 'Sample Event 2',
-                                start: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
-                                end: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000 + 3 * 60 * 60 * 1000),
+                                start: new Date(Date.now()  7 * 24 * 60 * 60 * 1000),
+                                end: new Date(Date.now()  7 * 24 * 60 * 60 * 1000  3 * 60 * 60 * 1000),
                                 location: 'Another Venue, Munich, Germany',
                                 description: 'Another sample event to test the display.',
                                 allDay: false,
@@ -1002,9 +1076,12 @@
                     }
                     // Update global state
                     window.events = finalEvents;
-                    // Display events
+                    // Hide loading and display events
+                    updateLoadingStatus('Displaying events...');
+                    hideLoading();
                     displayEvents();
                 } catch (error) {
+                    hideLoading();
                     showError('Failed to load events from Google Calendar API', error.message);
                 }
             }
@@ -1012,7 +1089,7 @@
                 // Build the API URL with parameters
                 const now = new Date();
                 const timeMin = now.toISOString();
-                const timeMax = new Date(now.getTime() + 365 * 24 * 60 * 60 * 1000).toISOString(); // 1 year from now
+                const timeMax = new Date(now.getTime()  365 * 24 * 60 * 60 * 1000).toISOString(); // 1 year from now
                 const url = new URL(`${API_BASE_URL}/calendars/${encodeURIComponent(CALENDAR_ID)}/events`);
                 url.searchParams.append('key', API_KEY);
                 url.searchParams.append('timeMin', timeMin);
@@ -1040,6 +1117,7 @@
                     }
                 };
                 try {
+                    updateLoadingStatus('Making API request...');
                     const response = await fetchWithTimeout(url, {
                         method: 'GET',
                         headers: {
@@ -1057,6 +1135,7 @@
                             throw new Error(`HTTP error! status: ${response.status} - ${response.statusText}`);
                         }
                     }
+                    updateLoadingStatus('Processing response...');
                     const data = await response.json();
                     if (!data.items) {
                         throw new Error('Invalid API response - no events data');
@@ -1105,7 +1184,7 @@
                             const year = eventDate.getFullYear();
                             // Calculate status
                             const today = new Date();
-                            const thisWeek = new Date(today.getTime() + 7 * 24 * 60 * 60 * 1000);
+                            const thisWeek = new Date(today.getTime()  7 * 24 * 60 * 60 * 1000);
                             let statusClass = 'upcoming';
                             let statusText = 'UPCOMING';
                             if (eventDate.toDateString() === today.toDateString()) {
@@ -1134,7 +1213,7 @@
                                                 ${event.location ? event.location.split(',')[0] : 'VENUE TBA'}
                                             </div>
                                             <div class="event-address">${event.location ? event.location.split(',').slice(1).join(',').trim() : ''}</div>
-                                            <div class="event-description">${event.description ? event.description.substring(0, 120) + (event.description.length > 120 ? '...' : '') : 'No additional details available.'}</div>
+                                            <div class="event-description">${event.description ? event.description.substring(0, 120)  (event.description.length > 120 ? '...' : '') : 'No additional details available.'}</div>
                                         </div>
                                         <div class="event-tags-container">
                                             <div class="event-status-tag ${statusClass}">${statusText}</div>
@@ -1151,27 +1230,27 @@
                 `;
             }
             function formatEventDate(date) {
-                const options = {
-                    weekday: 'long',
-                    year: 'numeric',
-                    month: 'long',
-                    day: 'numeric'
+                const options = { 
+                    weekday: 'long', 
+                    year: 'numeric', 
+                    month: 'long', 
+                    day: 'numeric' 
                 };
                 return new Date(date).toLocaleDateString('en-US', options);
             }
             function formatEventDateShort(date) {
-                const options = {
-                    month: 'short',
+                const options = { 
+                    month: 'short', 
                     day: 'numeric',
                     weekday: 'short'
                 };
                 return new Date(date).toLocaleDateString('en-US', options);
             }
             function formatEventTime(date) {
-                const options = {
-                    hour: '2-digit',
+                const options = { 
+                    hour: '2-digit', 
                     minute: '2-digit',
-                    hour12: true
+                    hour12: true 
                 };
                 return new Date(date).toLocaleTimeString('en-US', options);
             }
@@ -1203,16 +1282,16 @@
                 const endDate = new Date(event.end);
                 let dateTimeText = formatEventDate(startDate);
                 if (event.allDay) {
-                    dateTimeText += ' (All Day)';
+                    dateTimeText = ' (All Day)';
                 } else {
-                    dateTimeText += ` • ${formatEventTime(startDate)} - ${formatEventTime(endDate)}`;
+                    dateTimeText = ` • ${formatEventTime(startDate)} - ${formatEventTime(endDate)}`;
                 }
                 modalDateTime.textContent = dateTimeText;
                 // Set location
                 modalLocation.textContent = event.location || 'Location TBA';
                 // Set status
                 const today = new Date();
-                const thisWeek = new Date(today.getTime() + 7 * 24 * 60 * 60 * 1000);
+                const thisWeek = new Date(today.getTime()  7 * 24 * 60 * 60 * 1000);
                 let statusClass = 'upcoming';
                 let statusText = 'Upcoming';
                 if (startDate.toDateString() === today.toDateString()) {
@@ -1223,21 +1302,17 @@
                     statusText = 'This Week';
                 }
                 modalStatus.innerHTML = `<span class="event-status-badge ${statusClass}">${statusText}</span>`;
-                // Set description
                 modalDescription.textContent = event.description || 'No description available.';
-                // Set action links
                 if (event.htmlLink) {
                     modalGoogleLink.href = event.htmlLink;
                 } else {
                     modalGoogleLink.style.display = 'none';
                 }
-                // Create "Add to Calendar" link
                 const icsContent = createICSContent(event);
                 const blob = new Blob([icsContent], { type: 'text/calendar' });
                 const url = URL.createObjectURL(blob);
                 modalAddToCalendar.href = url;
                 modalAddToCalendar.download = `${event.title.replace(/[^a-z0-9]/gi, '_')}.ics`;
-                // Show modal
                 modal.classList.add('active');
                 document.body.style.overflow = 'hidden';
             }
@@ -1249,9 +1324,8 @@
             function createICSContent(event) {
                 const startDate = new Date(event.start);
                 const endDate = new Date(event.end);
-                // Format dates for ICS
                 const formatICSDate = (date) => {
-                    return date.toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
+                    return date.toISOString().replace(/[-:]/g, '').split('.')[0]  'Z';
                 };
                 let icsContent = [
                     'BEGIN:VCALENDAR',
@@ -1269,20 +1343,17 @@
                 ].filter(line => line !== '').join('\r\n');
                 return icsContent;
             }
-            // Close modal when clicking outside
             document.addEventListener('click', function(e) {
                 const modal = document.getElementById('eventModal');
                 if (e.target === modal) {
                     closeEventModal();
                 }
             });
-            // Close modal with Escape key
             document.addEventListener('keydown', function(e) {
                 if (e.key === 'Escape') {
                     closeEventModal();
                 }
             });
-            // Check if event is national (Germany) or international
             function isNationalEvent(location) {
                 if (!location) return false;
                 const locationLower = location.toLowerCase();
@@ -1424,7 +1495,6 @@
                     'vietnam': '🇻🇳',
                     'ho chi minh': '🇻🇳',
                     'hanoi': '🇻🇳',
-                    // Oceania
                     'australia': '🇦🇺',
                     'sydney': '🇦🇺',
                     'melbourne': '🇦🇺',
@@ -1433,7 +1503,6 @@
                     'new zealand': '🇳🇿',
                     'auckland': '🇳🇿',
                     'wellington': '🇳🇿',
-                    // Africa
                     'south africa': '🇿🇦',
                     'johannesburg': '🇿🇦',
                     'cape town': '🇿🇦',
@@ -1446,7 +1515,6 @@
                     'morocco': '🇲🇦',
                     'casablanca': '🇲🇦',
                     'marrakech': '🇲🇦',
-                    // Middle East
                     'uae': '🇦🇪',
                     'united arab emirates': '🇦🇪',
                     'dubai': '🇦🇪',
@@ -1463,13 +1531,11 @@
                     'riyadh': '🇸🇦',
                     'jeddah': '🇸🇦'
                 };
-                // Check for exact matches first
                 for (const [country, flag] of Object.entries(countryFlags)) {
                     if (locationLower.includes(country)) {
                         return flag;
                     }
                 }
-                // Check for common country codes
                 const countryCodes = {
                     'nl': '🇳🇱', 'de': '🇩🇪', 'fr': '🇫🇷', 'es': '🇪🇸', 'it': '🇮🇹', 'gb': '🇬🇧', 'uk': '🇬🇧',
                     'be': '🇧🇪', 'ch': '🇨🇭', 'at': '🇦🇹', 'pl': '🇵🇱', 'cz': '🇨🇿', 'hu': '🇭🇺', 'dk': '🇩🇰',
@@ -1479,16 +1545,13 @@
                     'my': '🇲🇾', 'ph': '🇵🇭', 'vn': '🇻🇳', 'au': '🇦🇺', 'nz': '🇳🇿', 'za': '🇿🇦', 'ng': '🇳🇬',
                     'eg': '🇪🇬', 'ke': '🇰🇪', 'ma': '🇲🇦', 'ae': '🇦🇪', 'il': '🇮🇱', 'tr': '🇹🇷', 'qa': '🇶🇦', 'sa': '🇸🇦'
                 };
-                // Check for country codes in the location
                 for (const [code, flag] of Object.entries(countryCodes)) {
                     if (locationLower.includes(code.toLowerCase())) {
                         return flag;
                     }
                 }
-                // Default to world flag if no match found
                 return '🌍';
             }
-            // Make functions globally accessible
             window.loadEvents = loadEvents;
             window.displayEvents = displayEvents;
             window.fetchGoogleCalendarEvents = fetchGoogleCalendarEvents;
@@ -1496,4 +1559,4 @@
             window.closeEventModal = closeEventModal;
         </script>
     </body>
-    </html>
+    </html> 
