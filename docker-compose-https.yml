@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  calendar:
+    build: .
+    container_name: dj-calendar-https
+    ports:
+      - "443:443"
+      - "80:80"
+    restart: unless-stopped
+    environment:
+      - FLASK_ENV=production
+    volumes:
+      - ./logs:/var/log/nginx
+      - ./ssl:/etc/nginx/ssl:ro
+      - ./certbot/conf:/etc/letsencrypt
+      - ./certbot/www:/var/www/certbot
+    networks:
+      - calendar-network
+
+  certbot:
+    image: certbot/certbot
+    container_name: dj-calendar-certbot
+    volumes:
+      - ./certbot/conf:/etc/letsencrypt
+      - ./certbot/www:/var/www/certbot
+    command: certonly --webroot --webroot-path=/var/www/certbot --email your-email@example.com --agree-tos --no-eff-email -d your-domain.com
+    depends_on:
+      - calendar
+
+networks:
+  calendar-network:
+    driver: bridge 

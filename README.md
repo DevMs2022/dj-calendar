@@ -22,7 +22,9 @@ This setup allows you to host your DJ Event Calendar on a VPS using Docker and e
 
 ## 🚀 Manual Docker Setup
 
-### 1. Install Docker (if not already installed)
+### HTTP Setup (Port 3000)
+
+#### 1. Install Docker (if not already installed)
 ```bash
 curl -fsSL https://get.docker.com -o get-docker.sh
 sudo sh get-docker.sh
@@ -30,16 +32,16 @@ sudo usermod -aG docker $USER
 # Log out and back in
 ```
 
-### 2. Build and Run
+#### 2. Build and Run
 ```bash
 # Build the image
 docker build -t dj-calendar .
 
 # Run the container
-docker run -d -p 80:80 --name dj-calendar dj-calendar
+docker run -d -p 3000:80 --name dj-calendar dj-calendar
 ```
 
-### 3. Using Docker Compose (Recommended)
+#### 3. Using Docker Compose (Recommended)
 ```bash
 # Start the application
 docker-compose up -d
@@ -49,6 +51,37 @@ docker-compose logs -f
 
 # Stop the application
 docker-compose down
+```
+
+### HTTPS Setup (Recommended for Production)
+
+#### 1. Deploy with HTTPS
+```bash
+# Run the HTTPS deployment script
+./deploy-https.sh
+
+# Follow the prompts to enter your domain and email
+```
+
+#### 2. Manual HTTPS Setup
+```bash
+# Create necessary directories
+mkdir -p logs ssl certbot/conf certbot/www
+
+# Update configuration files with your domain
+# Edit docker-compose-https.yml and nginx-https.conf
+
+# Deploy with HTTPS
+docker-compose -f docker-compose-https.yml up -d
+```
+
+#### 3. SSL Certificate Management
+```bash
+# Renew SSL certificates
+docker-compose -f docker-compose-https.yml run certbot renew
+
+# Check certificate status
+docker-compose -f docker-compose-https.yml run certbot certificates
 ```
 
 ## Manual Setup (Alternative)
@@ -92,6 +125,7 @@ sudo systemctl restart nginx
 
 Once deployed with Docker, you can embed the calendar in Nicepage using:
 
+### **HTTP Version (Port 3000):**
 **Option 1: Direct URL**
 ```
 http://your-vps-ip:3000/calendar
@@ -102,23 +136,38 @@ http://your-vps-ip:3000/calendar
 <iframe src="http://your-vps-ip:3000/calendar" width="100%" height="600px" frameborder="0"></iframe>
 ```
 
-**Option 3: With Domain (if you have one)**
+### **HTTPS Version (Recommended):**
+**Option 1: Direct URL**
 ```
-http://your-domain.com:3000/calendar
+https://your-domain.com/calendar
+```
+
+**Option 2: Iframe Embed**
+```html
+<iframe src="https://your-domain.com/calendar" width="100%" height="600px" frameborder="0"></iframe>
+```
+
+**Option 3: With Custom Domain**
+```
+https://calendar.yourdomain.com/calendar
 ```
 
 ## 📁 Files Created
 
 ### Docker Files
 - `Dockerfile` - Docker image configuration
-- `docker-compose.yml` - Docker Compose configuration
+- `docker-compose.yml` - Docker Compose configuration (HTTP)
+- `Dockerfile-https` - Docker image configuration with HTTPS
+- `docker-compose-https.yml` - Docker Compose configuration (HTTPS)
 - `.dockerignore` - Files to exclude from Docker build
-- `docker-deploy.sh` - Automated Docker deployment script
+- `docker-deploy.sh` - Automated Docker deployment script (HTTP)
+- `deploy-https.sh` - Automated Docker deployment script (HTTPS)
 
 ### Application Files
 - `server.py` - Flask web server
 - `requirements.txt` - Python dependencies
-- `nginx.conf` - Nginx configuration (optimized for Docker)
+- `nginx.conf` - Nginx configuration (HTTP)
+- `nginx-https.conf` - Nginx configuration (HTTPS with SSL)
 - `event_calendar_minified.html` - Minified calendar file
 
 ## Security Notes
