@@ -1,0 +1,17 @@
+.git
+.gitignore
+.DS_Store
+README.md
+deploy.sh
+calendar.service
+nginx.conf
+event_calendar.html
+venv/
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+logs/ 

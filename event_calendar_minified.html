@@ -1,0 +1,1499 @@
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>DJ Event Calendar</title>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600&display=swap');
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+            html, body {
+                margin: 0 !important;
+                padding: 0 !important;
+                font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+                line-height: 1.6 !important;
+                color: #ffffff !important;
+                background-color: #000000 !important;
+                scroll-behavior: smooth !important;
+                overflow-x: hidden !important;
+                width: 100vw !important;
+                max-width: 100vw !important;
+            }
+            .dj-calendar-isolation {
+                position: relative !important;
+                z-index: 9999 !important;
+                isolation: isolate !important;
+                display: block !important;
+                width: 100vw !important;
+                max-width: 100vw !important;
+                min-height: 100vh !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                left: 0 !important;
+                right: 0 !important;
+                transform: none !important;
+            }
+            .container {
+                width: 100vw !important;
+                max-width: 100vw !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                isolation: isolate !important;
+                contain: layout style paint !important;
+                position: relative !important;
+                left: 0 !important;
+                right: 0 !important;
+                transform: none !important;
+            }
+            body {
+                font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+                line-height: 1.6 !important;
+                color: #ffffff !important;
+                background-color: #000000 !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                scroll-behavior: smooth !important;
+                min-height: 100vh !important;
+                position: relative !important;
+                width: 100vw !important;
+                max-width: 100vw !important;
+                overflow-x: hidden !important;
+            }
+            .dj-calendar-isolation,
+            .dj-calendar-isolation *,
+            .container,
+            .container * {
+                max-width: none !important;
+                box-sizing: border-box !important;
+            }
+            /* * {
+                transition: all 0.3s ease;
+            } */
+            ::-webkit-scrollbar {
+                width: 8px;
+            }
+            ::-webkit-scrollbar-track {
+                background: #111111;
+            }
+            ::-webkit-scrollbar-thumb {
+                background: #333333;
+                border-radius: 4px;
+            }
+            ::-webkit-scrollbar-thumb:hover {
+                background: #555555;
+            }
+            .dj-calendar-isolation {
+                position: relative !important;
+                z-index: 9999 !important;
+                isolation: isolate !important;
+                contain: layout style paint !important;
+            }
+            .dj-calendar-isolation * {
+                font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+            }
+            .dj-calendar-isolation > *,
+            .container > * {
+                width: 100% !important;
+                max-width: 100% !important;
+            }
+            .wp-content,
+            .entry-content,
+            .main-content,
+            .content-area,
+            .site-content,
+            .page-content,
+            [class*="container"],
+            [class*="wrapper"],
+            [class*="content"] {
+                width: 100vw !important;
+                max-width: 100vw !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                left: 0 !important;
+                right: 0 !important;
+                transform: none !important;
+            }
+            .container {
+                width: 100% !important;
+                max-width: 100% !important;
+                margin: 0 !important;
+                background: #111111 !important;
+                min-height: 100vh !important;
+                position: relative !important;
+                z-index: 1 !important;
+            }
+            .header {
+                background: linear-gradient(135deg, #000000 0%, #111111 50%, #000000 100%) !important;
+                color: white !important;
+                padding: 3rem 4rem !important;
+                text-align: center !important;
+                border-bottom: 2px solid #ffffff !important;
+                position: relative !important;
+                box-shadow: 0 4px 20px rgba(255, 255, 255, 0.1) !important;
+                z-index: 10 !important;
+            }
+            .header h1 {
+                font-size: 3.5rem !important;
+                margin-bottom: 0.5rem !important;
+                font-weight: 900 !important;
+                letter-spacing: 4px !important;
+                text-transform: uppercase !important;
+                color: #ffffff !important;
+            }
+            .header p {
+                font-size: 1.3rem !important;
+                opacity: 0.8 !important;
+                font-weight: 300 !important;
+                letter-spacing: 2px !important;
+                color: #ffffff !important;
+                text-transform: uppercase !important;
+            }
+            /* @keyframes fadeInUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(30px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            } */
+            .content {
+                padding: 3rem 4rem !important;
+                position: relative !important;
+                z-index: 5 !important;
+                max-width: 100% !important;
+            }
+            .section {
+                margin-bottom: 3rem !important;
+                border-left: 2px solid #ffffff !important;
+                padding-left: 2rem !important;
+                position: relative !important;
+                z-index: 1 !important;
+            }
+            .section h2 {
+                color: #ffffff !important;
+                font-size: 1.8rem !important;
+                margin-bottom: 1.5rem !important;
+                font-weight: 300 !important;
+                text-transform: uppercase !important;
+                letter-spacing: 1px !important;
+            }
+            .events-list {
+                display: flex;
+                flex-direction: column;
+                gap: 2rem;
+                margin-top: 2rem;
+            }
+            .event-card {
+                display: flex;
+                align-items: stretch;
+                background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0a0a0a 100%);
+                border: 2px solid #333;
+                border-radius: 12px;
+                padding: 0;
+                position: relative;
+                overflow: hidden;
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+                height: 180px;
+            }
+            /* .event-card::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: -100%;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+                transition: left 0.6s ease;
+            }
+            .event-card:hover::before {
+                left: 100%;
+            }
+            .event-card:hover {
+                border-color: #ffffff;
+                transform: translateY(-5px) scale(1.02);
+                box-shadow: 0 10px 25px rgba(255, 255, 255, 0.2);
+                background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 50%, #1a1a1a 100%);
+            } */
+            /* .event-card:hover .event-details {
+                border-left-color: #ffffff;
+            } */
+            .event-date {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                width: 140px;
+                text-align: center;
+                background: #ffffff;
+                border-radius: 0;
+                padding: 2rem 1.5rem;
+                box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
+                border: 2px solid #ffffff;
+                position: relative;
+                overflow: hidden;
+                height: 100%;
+                margin: 0;
+                border-radius: 12px 0 0 12px;
+                border-right: none;
+                flex-shrink: 0;
+            }
+            /* .event-date::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: -100%;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.1), transparent);
+                transition: left 0.6s ease;
+            }
+            .event-date:hover::before {
+                left: 100%;
+            }
+            .event-date:hover {
+                box-shadow: 0 8px 25px rgba(255, 255, 255, 0.3);
+            } */
+            .event-day {
+                font-size: 2.5rem;
+                font-weight: 900;
+                color: #000000;
+                line-height: 1;
+                margin-bottom: 0.3rem;
+                text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            }
+            .event-month {
+                font-size: 0.9rem;
+                font-weight: 700;
+                color: #000000;
+                text-transform: uppercase;
+                letter-spacing: 2px;
+                text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+            }
+            .event-details {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                padding: 1.5rem 2rem 2rem 2rem;
+                border-left: 2px solid #333;
+                position: relative;
+                height: 100%;
+                overflow: hidden;
+            }
+            .event-title {
+                font-size: 1.6rem;
+                font-weight: 700;
+                color: #ffffff;
+                margin-bottom: 0.5rem;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                line-height: 1.2;
+                margin-top: 0;
+                flex-shrink: 0;
+            }
+            .event-venue {
+                font-size: 1.1rem;
+                color: #ffffff;
+                font-weight: 600;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                margin-bottom: 0.2rem;
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                line-height: 1.2;
+                flex-shrink: 0;
+            }
+            .country-flag {
+                font-size: 1.3rem;
+                margin-right: 0.3rem;
+            }
+            .event-address {
+                font-size: 0.9rem;
+                color: #cccccc;
+                font-weight: 400;
+                text-transform: none;
+                letter-spacing: 0.5px;
+                line-height: 1.2;
+                margin-bottom: 0.3rem;
+                flex-shrink: 0;
+            }
+            .event-description {
+                font-size: 0.85rem;
+                color: #aaaaaa;
+                font-weight: 400;
+                text-transform: none;
+                letter-spacing: 0.5px;
+                line-height: 1.2;
+                max-width: 400px;
+                flex-shrink: 0;
+                margin-bottom: 0.5rem;
+            }
+            .event-tags-container {
+                display: flex;
+                gap: 0.8rem;
+                align-items: center;
+                margin-top: 1rem;
+                flex-shrink: 0;
+            }
+            .event-status-tag {
+                display: inline-block;
+                padding: 0.4rem 0.9rem;
+                border-radius: 6px;
+                font-size: 0.7rem;
+                font-weight: 700;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                border: 2px solid;
+                height: 28px;
+                line-height: 1;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .event-status-tag.today {
+                background: #ff4444;
+                color: #ffffff;
+                border-color: #ff4444;
+                box-shadow: 0 0 10px rgba(255, 68, 68, 0.3);
+            }
+            .event-status-tag.this-week {
+                background: #ffaa00;
+                color: #000000;
+                border-color: #ffaa00;
+                box-shadow: 0 0 10px rgba(255, 170, 0, 0.3);
+            }
+            .event-status-tag.upcoming {
+                background: #00aa44;
+                color: #ffffff;
+                border-color: #00aa44;
+                box-shadow: 0 0 10px rgba(0, 170, 68, 0.3);
+            }
+            .event-type-tag {
+                display: inline-block;
+                padding: 0.4rem 0.9rem;
+                border-radius: 6px;
+                font-size: 0.7rem;
+                font-weight: 700;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                border: 1px solid;
+                height: 28px;
+                line-height: 1;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .event-type-tag.national {
+                background: #ffffff;
+                color: #000000;
+                border-color: #ffffff;
+            }
+            .event-type-tag.international {
+                background: #000000;
+                color: #ffffff;
+                border-color: #ffffff;
+            }
+            .event-actions {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-end;
+                justify-content: flex-end;
+                padding: 1rem 1.5rem 1.5rem 1.5rem;
+                width: 140px;
+                flex-shrink: 0;
+                height: 100%;
+                gap: 0.3rem;
+            }
+            .more-info-btn {
+                background: #ffffff;
+                border: 2px solid #ffffff;
+                color: #000000;
+                padding: 0.5rem 1.2rem;
+                border-radius: 6px;
+                cursor: pointer;
+                font-weight: 600;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                text-decoration: none;
+                display: inline-block;
+                box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+                font-size: 0.75rem;
+                margin-bottom: 0.3rem;
+            }
+            .ticket-btn {
+                background: #00ff00;
+                border: 2px solid #00ff00;
+                color: #000000;
+                padding: 0.5rem 1.2rem;
+                border-radius: 6px;
+                cursor: pointer;
+                font-weight: 600;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                text-decoration: none;
+                display: inline-block;
+                box-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
+                font-size: 0.75rem;
+            }
+            /* .ticket-btn:hover {
+                background: #00cc00;
+                border-color: #00cc00;
+                box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
+            } */
+            .onsite-btn {
+                background: #ff6600;
+                border: 2px solid #ff6600;
+                color: #ffffff;
+                padding: 0.5rem 1rem;
+                border-radius: 6px;
+                cursor: pointer;
+                font-weight: 600;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                text-decoration: none;
+                display: inline-block;
+                box-shadow: 0 0 15px rgba(255, 102, 0, 0.3);
+                font-size: 0.7rem;
+            }
+            /* .onsite-btn:hover {
+                background: #ff4400;
+                border-color: #ff4400;
+                box-shadow: 0 0 20px rgba(255, 102, 0, 0.5);
+            } */
+            /* .more-info-btn:hover {
+                background: #000000;
+                color: #ffffff;
+                transform: translateY(-2px);
+                box-shadow: 0 5px 20px rgba(255, 255, 255, 0.3);
+            } */
+            .modal-overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.8);
+                display: none;
+                justify-content: center;
+                align-items: center;
+                z-index: 10000;
+                backdrop-filter: blur(5px);
+            }
+            .modal-overlay.active {
+                display: flex;
+            }
+            /* @keyframes fadeIn {
+                from { opacity: 0; }
+                to { opacity: 1; }
+            } */
+            .modal-content {
+                background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0a0a0a 100%);
+                border: 2px solid #333;
+                border-radius: 12px;
+                max-width: 500px;
+                width: 90%;
+                max-height: 80vh;
+                overflow-y: auto;
+                position: relative;
+                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            }
+            /* @keyframes slideIn {
+                from {
+                    opacity: 0;
+                    transform: translateY(-50px) scale(0.9);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0) scale(1);
+                }
+            } */
+            .modal-header {
+                background: linear-gradient(135deg, #000000 0%, #0a0a0a 50%, #000000 100%);
+                padding: 1.5rem;
+                border-bottom: 2px solid #333;
+                border-radius: 10px 10px 0 0;
+                position: relative;
+            }
+            .modal-close {
+                position: absolute;
+                top: 1rem;
+                right: 1rem;
+                background: transparent;
+                border: 2px solid #ffffff;
+                color: #ffffff;
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 1.2rem;
+                font-weight: bold;
+            }
+            /* .modal-close:hover {
+                background: #ffffff;
+                color: #000000;
+                transform: scale(1.1);
+                box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+            } */
+            .modal-title {
+                font-size: 1.6rem;
+                font-weight: 700;
+                color: #ffffff;
+                margin-bottom: 0.4rem;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+            }
+            .modal-subtitle {
+                font-size: 1rem;
+                color: #ffffff;
+                font-weight: 500;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+            }
+            .modal-body {
+                padding: 1.5rem;
+            }
+            .event-detail-section {
+                margin-bottom: 1.5rem;
+                padding: 1rem;
+                background: rgba(255, 255, 255, 0.02);
+                border: 1px solid #333;
+                border-radius: 8px;
+            }
+            .event-detail-section:last-child {
+                margin-bottom: 0;
+            }
+            .detail-label {
+                font-size: 0.8rem;
+                color: #ffffff;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                font-weight: 600;
+                margin-bottom: 0.4rem;
+            }
+            .detail-value {
+                font-size: 1rem;
+                color: #ffffff;
+                font-weight: 400;
+                line-height: 1.4;
+            }
+            .detail-value.time {
+                font-size: 1.1rem;
+                font-weight: 600;
+                color: #ffffff;
+            }
+            .detail-value.location {
+                font-size: 1rem;
+                font-weight: 500;
+                color: #ffffff;
+            }
+            .detail-value.description {
+                font-size: 0.9rem;
+                color: #cccccc;
+                line-height: 1.5;
+                white-space: pre-wrap;
+            }
+            .event-actions-modal {
+                display: flex;
+                gap: 0.8rem;
+                margin-top: 1.5rem;
+                flex-wrap: wrap;
+            }
+            .action-btn {
+                background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+                border: 2px solid #ffffff;
+                color: #ffffff;
+                padding: 0.8rem 1.5rem;
+                border-radius: 6px;
+                cursor: pointer;
+                font-weight: 600;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                text-decoration: none;
+                display: inline-flex;
+                align-items: center;
+                gap: 0.5rem;
+            }
+            /* .action-btn:hover {
+                background: #ffffff;
+                color: #000000;
+                transform: translateY(-2px);
+                box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
+            } */
+            .action-btn.primary {
+                background: #ffffff;
+                border-color: #ffffff;
+                color: #000000;
+                box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+            }
+            /* .action-btn.primary:hover {
+                background: #000000;
+                color: #ffffff;
+                border-color: #ffffff;
+                box-shadow: 0 0 25px rgba(255, 255, 255, 0.3);
+            } */
+            .event-status-badge {
+                display: inline-block;
+                padding: 0.5rem 1rem;
+                border-radius: 6px;
+                font-size: 0.8rem;
+                font-weight: 600;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+                border: 1px solid;
+            }
+            .event-status-badge.today {
+                background: #ffffff;
+                color: #000000;
+                border-color: #ffffff;
+                box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+            }
+            .event-status-badge.this-week {
+                background: #000000;
+                color: #ffffff;
+                border-color: #ffffff;
+                box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+            }
+            .event-status-badge.upcoming {
+                background: #333333;
+                color: #ffffff;
+                border-color: #666666;
+            }
+            .event-status {
+                display: inline-block;
+                padding: 0.5rem 1rem;
+                border-radius: 4px;
+                font-size: 0.8rem;
+                font-weight: 400;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+                border: 1px solid #333;
+                background: #1a1a1a;
+                color: #cccccc;
+            }
+            .event-status.upcoming {
+                background: #1a1a1a;
+                color: #cccccc;
+                border: 1px solid #333;
+            }
+            .event-status.today {
+                background: #222222;
+                color: #ffffff;
+                border: 1px solid #ffffff;
+            }
+            .event-status.this-week {
+                background: #1a1a1a;
+                color: #ffffff;
+                border: 1px solid #555;
+            }
+            .error-message {
+                text-align: center;
+                padding: 3rem;
+                background: #1a1a1a;
+                border: 1px solid #333;
+                border-radius: 8px;
+                margin: 2rem 0;
+                color: #cccccc;
+            }
+            .no-events {
+                text-align: center;
+                padding: 3rem;
+                background: #1a1a1a;
+                border: 1px solid #333;
+                border-radius: 8px;
+                margin: 2rem 0;
+                color: #cccccc;
+            }
+            .refresh-btn {
+                background: linear-gradient(135deg, #1a1a1a 0%, #222222 100%);
+                border: 1px solid #333;
+                color: #ffffff;
+                padding: 1rem 2rem;
+                border-radius: 4px;
+                cursor: pointer;
+                font-weight: 400;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+                margin-top: 1rem;
+                position: relative;
+                overflow: hidden;
+            }
+            /* .refresh-btn::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: -100%;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+                transition: left 0.6s ease;
+            }
+            .refresh-btn:hover::before {
+                left: 100%;
+            }
+            .refresh-btn:hover {
+                border-color: #ffffff;
+                transform: translateY(-2px);
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+                background: linear-gradient(135deg, #222222 0%, #2a2a2a 100%);
+            } */
+            .api-setup {
+                background: #1a1a1a;
+                border: 1px solid #333;
+                border-radius: 8px;
+                padding: 2rem;
+                margin: 2rem 0;
+                color: #cccccc;
+            }
+            .api-setup h3 {
+                color: #ffffff;
+                margin-bottom: 1rem;
+                font-size: 1.2rem;
+            }
+            .api-setup ol {
+                margin-left: 1.5rem;
+                line-height: 1.8;
+            }
+            .api-setup li {
+                margin-bottom: 0.5rem;
+            }
+            .api-setup code {
+                background: #333;
+                padding: 0.2rem 0.4rem;
+                border-radius: 3px;
+                font-family: 'Courier New', monospace;
+            }
+            @media (max-width: 768px) {
+                .header h1 {
+                    font-size: 2.5rem;
+                }
+                .header p {
+                    font-size: 1.1rem;
+                }
+                .content {
+                    padding: 2rem 1rem;
+                }
+                .event-card {
+                    flex-direction: column;
+                    text-align: center;
+                    padding: 1.5rem;
+                }
+                .event-date {
+                    margin-right: 0;
+                    margin-bottom: 1rem;
+                }
+                .event-actions {
+                    margin-left: 0;
+                    margin-top: 1rem;
+                }
+                .event-day {
+                    font-size: 2.5rem;
+                }
+                .event-title {
+                    font-size: 1.3rem;
+                }
+            }
+            @media (max-width: 768px) {
+                .modal-content {
+                    width: 95%;
+                    margin: 1rem;
+                }
+                .modal-header {
+                    padding: 1.5rem;
+                }
+                .modal-body {
+                    padding: 1.5rem;
+                }
+                .modal-title {
+                    font-size: 1.5rem;
+                }
+                .event-actions-modal {
+                    flex-direction: column;
+                }
+                .action-btn {
+                    justify-content: center;
+                }
+                .event-description {
+                    max-width: 200px;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="dj-calendar-isolation">
+            <div class="container">
+                <div class="header">
+                    <h1>TIME TO PARTY</h1>
+                    <p>The best events of the season!</p>
+                </div>
+                <div class="content">
+                    <div class="section">
+                        <h2>Upcoming Events</h2>
+                        <div id="eventsList">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="eventModal" class="modal-overlay">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="modal-close" onclick="closeEventModal()">&times;</button>
+                    <div class="modal-title" id="modalTitle">Event Title</div>
+                    <div class="modal-subtitle" id="modalSubtitle">Event Details</div>
+                </div>
+                <div class="modal-body">
+                    <div class="event-detail-section">
+                        <div class="detail-label">Date & Time</div>
+                        <div class="detail-value time" id="modalDateTime">Date & Time</div>
+                    </div>
+                    <div class="event-detail-section">
+                        <div class="detail-label">Location</div>
+                        <div class="detail-value location" id="modalLocation">TBA</div>
+                    </div>
+                    <div class="event-detail-section">
+                        <div class="detail-label">Status</div>
+                        <div id="modalStatus">Status</div>
+                    </div>
+                    <div class="event-detail-section">
+                        <div class="detail-label">Description</div>
+                        <div class="detail-value description" id="modalDescription">No description available.</div>
+                    </div>
+                    <div class="event-actions-modal">
+                        <a href="#" id="modalGoogleLink" class="action-btn primary" target="_blank">
+                            📅 View in Google Calendar
+                        </a>
+                        <a href="#" id="modalRouteLink" class="action-btn" target="_blank">
+                            🗺️ Get Directions
+                        </a>
+                        <a href="#" id="modalAddToCalendar" class="action-btn" target="_blank">
+                            ➕ Add to Calendar
+                        </a>
+                        <button class="action-btn" onclick="closeEventModal()">
+                            ✕ Close
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+            </div>
+        </div>
+        <script>
+            // ===== GLOBAL VARIABLES AND FUNCTIONS =====
+            // These must be at the very top to be truly global
+            var events = [];
+            window.events = events;
+            // ========================================
+            // GOOGLE CALENDAR API v3 CONFIGURATION
+            // ========================================
+            // Your Google Calendar ID (specific calendar)
+            const CALENDAR_ID = 'c921370d3aa05ea032229532b43aaa4a70042d58a984b3d01aecec5df2ccf46f@group.calendar.google.com';
+            // Your Google Cloud API Key (you need to create this)
+            // TODO: Replace with your actual API key from Google Cloud Console
+            const API_KEY = 'AIzaSyBfmtLdRYYPaCSZ0QC7PnNnty0maELwyHU';
+            // Google Calendar API v3 endpoint
+            const API_BASE_URL = 'https://www.googleapis.com/calendar/v3';
+            // ========================================
+            // SETUP INSTRUCTIONS
+            // ========================================
+            // To get your API key:
+            // 1. Go to https://console.cloud.google.com/
+            // 2. Create a new project or select existing one
+            // 3. Enable the Google Calendar API
+            // 4. Go to "Credentials" → "Create Credentials" → "API Key"
+            // 5. Copy the API key and replace 'YOUR_GOOGLE_API_KEY_HERE' above
+            // 6. (Optional) Restrict the API key to your domain for security
+            // To make your calendar public:
+            // 1. Go to Google Calendar
+            // 2. Find your calendar in the left sidebar
+            // 3. Click the three dots next to your calendar name
+            // 4. Select "Settings and sharing"
+            // 5. Scroll down to "Access permissions for events"
+            // 6. Check "Make available to public"
+            // 7. Set "See all event details" to "Make available to public"
+            let currentDate = new Date();
+            // Initialize events
+            document.addEventListener('DOMContentLoaded', function() {
+                // Check if API key is configured
+                if (API_KEY === 'YOUR_GOOGLE_API_KEY_HERE') {
+                    showApiSetupInstructions();
+                } else {
+                    loadEvents();
+                }
+            });
+            function showApiSetupInstructions() {
+                const eventsList = document.getElementById('eventsList');
+                eventsList.innerHTML = `
+                    <div class="api-setup">
+                        <h3>🔧 Google Calendar API Setup Required</h3>
+                        <p>To display your events, you need to set up the Google Calendar API:</p>
+                        <ol>
+                            <li><strong>Get API Key:</strong> Go to <a href="https://console.cloud.google.com/" target="_blank" style="color: #ffffff;">Google Cloud Console</a></li>
+                            <li><strong>Create Project:</strong> Create a new project or select existing one</li>
+                            <li><strong>Enable API:</strong> Enable the "Google Calendar API"</li>
+                            <li><strong>Create Credentials:</strong> Go to "Credentials" → "Create Credentials" → "API Key"</li>
+                            <li><strong>Copy API Key:</strong> Copy the generated API key</li>
+                            <li><strong>Update Code:</strong> Replace <code>YOUR_GOOGLE_API_KEY_HERE</code> in the JavaScript with your actual API key</li>
+                            <li><strong>Make Calendar Public:</strong> In Google Calendar settings, make your calendar "Make available to public"</li>
+                        </ol>
+                        <p><strong>Current Calendar ID:</strong> <code>${CALENDAR_ID}</code></p>
+                        <button class="refresh-btn" onclick="loadEvents()">Try Again After Setup</button>
+                    </div>
+                `;
+            }
+            function showError(message, details = '') {
+                const eventsList = document.getElementById('eventsList');
+                eventsList.innerHTML = `
+                    <div class="error-message">
+                        <h3>⚠️ Error Loading Events</h3>
+                        <p>${message}</p>
+                        ${details ? `<p><em>${details}</em></p>` : ''}
+                        <button class="refresh-btn" onclick="loadEvents()">Try Again</button>
+                    </div>
+                `;
+            }
+            function showNoEvents() {
+                const eventsList = document.getElementById('eventsList');
+                eventsList.innerHTML = `
+                    <div class="no-events">
+                        <p>No upcoming events scheduled.</p>
+                        <button class="refresh-btn" onclick="loadEvents()">Refresh</button>
+                    </div>
+                `;
+            }
+            async function loadEvents() {
+                try {
+                    // Fetch events from API
+                    const events = await fetchGoogleCalendarEvents();
+                    // Add sample events if API returns empty
+                    let finalEvents = events;
+                    if (events.length === 0) {
+                        finalEvents = [
+                            {
+                                title: 'Sample Event 1',
+                                start: new Date(Date.now() + 24 * 60 * 60 * 1000),
+                                end: new Date(Date.now() + 24 * 60 * 60 * 1000 + 2 * 60 * 60 * 1000),
+                                location: 'Sample Venue, Berlin, Germany',
+                                description: 'This is a sample event for testing purposes.',
+                                allDay: false,
+                                id: 'sample1',
+                                htmlLink: null
+                            },
+                            {
+                                title: 'Sample Event 2',
+                                start: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
+                                end: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000 + 3 * 60 * 60 * 1000),
+                                location: 'Another Venue, Munich, Germany',
+                                description: 'Another sample event to test the display.',
+                                allDay: false,
+                                id: 'sample2',
+                                htmlLink: 'https://example.com'
+                            }
+                        ];
+                    }
+                    // Update global state
+                    window.events = finalEvents;
+                    // Display events
+                    displayEvents();
+                } catch (error) {
+                    showError('Failed to load events from Google Calendar API', error.message);
+                }
+            }
+            async function fetchGoogleCalendarEvents() {
+                // Build the API URL with parameters
+                const now = new Date();
+                const timeMin = now.toISOString();
+                const timeMax = new Date(now.getTime() + 365 * 24 * 60 * 60 * 1000).toISOString(); // 1 year from now
+                const url = new URL(`${API_BASE_URL}/calendars/${encodeURIComponent(CALENDAR_ID)}/events`);
+                url.searchParams.append('key', API_KEY);
+                url.searchParams.append('timeMin', timeMin);
+                url.searchParams.append('timeMax', timeMax);
+                url.searchParams.append('singleEvents', 'true');
+                url.searchParams.append('orderBy', 'startTime');
+                url.searchParams.append('maxResults', '50');
+                // Add timeout to fetch
+                const fetchWithTimeout = async (url, options, timeout = 8000) => {
+                    const controller = new AbortController();
+                    const timeoutId = setTimeout(() => controller.abort(), timeout);
+                    try {
+                        const response = await fetch(url, {
+                            ...options,
+                            signal: controller.signal
+                        });
+                        clearTimeout(timeoutId);
+                        return response;
+                    } catch (error) {
+                        clearTimeout(timeoutId);
+                        if (error.name === 'AbortError') {
+                            throw new Error('Request timeout - API call took too long');
+                        }
+                        throw error;
+                    }
+                };
+                try {
+                    const response = await fetchWithTimeout(url, {
+                        method: 'GET',
+                        headers: {
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/json'
+                        }
+                    }, 8000); // 8 second timeout
+                    if (!response.ok) {
+                        const errorText = await response.text();
+                        if (response.status === 403) {
+                            throw new Error('API access denied. Check your API key and calendar permissions.');
+                        } else if (response.status === 404) {
+                            throw new Error('Calendar not found. Check your calendar ID and make sure it\'s public.');
+                        } else {
+                            throw new Error(`HTTP error! status: ${response.status} - ${response.statusText}`);
+                        }
+                    }
+                    const data = await response.json();
+                    if (!data.items) {
+                        throw new Error('Invalid API response - no events data');
+                    }
+                    // Convert Google Calendar API format to our events format
+                    const events = data.items.map(item => {
+                        const start = item.start.dateTime || item.start.date;
+                        const end = item.end.dateTime || item.end.date;
+                        return {
+                            title: item.summary || 'Untitled Event',
+                            start: new Date(start),
+                            end: new Date(end),
+                            location: item.location || null,
+                            description: item.description || null,
+                            allDay: !item.start.dateTime, // If no dateTime, it's an all-day event
+                            id: item.id,
+                            htmlLink: item.htmlLink
+                        };
+                    });
+                    return events;
+                } catch (fetchError) {
+                    throw fetchError;
+                }
+            }
+            function displayEvents() {
+                const eventsList = document.getElementById('eventsList');
+                if (events.length === 0) {
+                    eventsList.innerHTML = `
+                        <div class="no-events">
+                            <p>No upcoming events scheduled.</p>
+                            <p><em>API returned ${events.length} events</em></p>
+                            <button class="refresh-btn" onclick="loadEvents()">Refresh</button>
+                        </div>
+                    `;
+                    return;
+                }
+                const upcomingEvents = events
+                    .filter(event => new Date(event.start) >= new Date())
+                    .slice(0, 10); // Show next 10 events
+                eventsList.innerHTML = `
+                    <div class="events-list">
+                        ${upcomingEvents.map(event => {
+                            const eventDate = new Date(event.start);
+                            const day = eventDate.getDate();
+                            const month = eventDate.toLocaleDateString('en-US', { month: 'short' }).toUpperCase();
+                            const year = eventDate.getFullYear();
+                            // Calculate status
+                            const today = new Date();
+                            const thisWeek = new Date(today.getTime() + 7 * 24 * 60 * 60 * 1000);
+                            let statusClass = 'upcoming';
+                            let statusText = 'UPCOMING';
+                            if (eventDate.toDateString() === today.toDateString()) {
+                                statusClass = 'today';
+                                statusText = 'TODAY';
+                            } else if (eventDate <= thisWeek) {
+                                statusClass = 'this-week';
+                                statusText = 'THIS WEEK';
+                            }
+                            // Get country flag and determine if national or international
+                            const countryFlag = getCountryFlag(event.location || '');
+                            const isNational = isNationalEvent(event.location || '');
+                            const eventTypeClass = isNational ? 'national' : 'international';
+                            const eventTypeText = isNational ? 'NATIONAL' : 'INTERNATIONAL';
+                            return `
+                                <div class="event-card">
+                                    <div class="event-date">
+                                        <div class="event-day">${day}</div>
+                                        <div class="event-month">${month} ${year}</div>
+                                    </div>
+                                    <div class="event-details">
+                                        <div>
+                                            <div class="event-title">${event.title}</div>
+                                            <div class="event-venue">
+                                                <span class="country-flag">${countryFlag}</span>
+                                                ${event.location ? event.location.split(',')[0] : 'VENUE TBA'}
+                                            </div>
+                                            <div class="event-address">${event.location ? event.location.split(',').slice(1).join(',').trim() : ''}</div>
+                                            <div class="event-description">${event.description ? event.description.substring(0, 120) + (event.description.length > 120 ? '...' : '') : 'No additional details available.'}</div>
+                                        </div>
+                                        <div class="event-tags-container">
+                                            <div class="event-status-tag ${statusClass}">${statusText}</div>
+                                            <div class="event-type-tag ${eventTypeClass}">${eventTypeText}</div>
+                                        </div>
+                                    </div>
+                                    <div class="event-actions">
+                                        <button onclick="showEventDetails(${JSON.stringify(event).replace(/"/g, '&quot;')})" class="more-info-btn">MORE INFO</button>
+                                    </div>
+                                </div>
+                            `;
+                        }).join('')}
+                    </div>
+                `;
+            }
+            function formatEventDate(date) {
+                const options = {
+                    weekday: 'long',
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                };
+                return new Date(date).toLocaleDateString('en-US', options);
+            }
+            function formatEventDateShort(date) {
+                const options = {
+                    month: 'short',
+                    day: 'numeric',
+                    weekday: 'short'
+                };
+                return new Date(date).toLocaleDateString('en-US', options);
+            }
+            function formatEventTime(date) {
+                const options = {
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    hour12: true
+                };
+                return new Date(date).toLocaleTimeString('en-US', options);
+            }
+            // Auto-refresh events every 5 minutes
+            setInterval(loadEvents, 5 * 60 * 1000);
+            // On Site function for events without ticket links
+            function onsiteEvent(eventTitle) {
+                // This function can be customized for on-site event handling
+                // For now, it shows an alert with the event title
+                // Removed debug alert - function can be customized as needed
+            }
+            // Event Details Modal Functions
+            function showEventDetails(event) {
+                const modal = document.getElementById('eventModal');
+                const modalTitle = document.getElementById('modalTitle');
+                const modalSubtitle = document.getElementById('modalSubtitle');
+                const modalDateTime = document.getElementById('modalDateTime');
+                const modalLocation = document.getElementById('modalLocation');
+                const modalStatus = document.getElementById('modalStatus');
+                const modalDescription = document.getElementById('modalDescription');
+                const modalGoogleLink = document.getElementById('modalGoogleLink');
+                const modalRouteLink = document.getElementById('modalRouteLink');
+                const modalAddToCalendar = document.getElementById('modalAddToCalendar');
+                // Set event title and subtitle
+                modalTitle.textContent = event.title;
+                modalSubtitle.textContent = event.location || 'Event Details';
+                // Format date and time
+                const startDate = new Date(event.start);
+                const endDate = new Date(event.end);
+                let dateTimeText = formatEventDate(startDate);
+                if (event.allDay) {
+                    dateTimeText += ' (All Day)';
+                } else {
+                    dateTimeText += ` • ${formatEventTime(startDate)} - ${formatEventTime(endDate)}`;
+                }
+                modalDateTime.textContent = dateTimeText;
+                // Set location
+                modalLocation.textContent = event.location || 'Location TBA';
+                // Set status
+                const today = new Date();
+                const thisWeek = new Date(today.getTime() + 7 * 24 * 60 * 60 * 1000);
+                let statusClass = 'upcoming';
+                let statusText = 'Upcoming';
+                if (startDate.toDateString() === today.toDateString()) {
+                    statusClass = 'today';
+                    statusText = 'Today';
+                } else if (startDate <= thisWeek) {
+                    statusClass = 'this-week';
+                    statusText = 'This Week';
+                }
+                modalStatus.innerHTML = `<span class="event-status-badge ${statusClass}">${statusText}</span>`;
+                // Set description
+                modalDescription.textContent = event.description || 'No description available.';
+                // Set action links
+                if (event.htmlLink) {
+                    modalGoogleLink.href = event.htmlLink;
+                } else {
+                    modalGoogleLink.style.display = 'none';
+                }
+                // Create "Add to Calendar" link
+                const icsContent = createICSContent(event);
+                const blob = new Blob([icsContent], { type: 'text/calendar' });
+                const url = URL.createObjectURL(blob);
+                modalAddToCalendar.href = url;
+                modalAddToCalendar.download = `${event.title.replace(/[^a-z0-9]/gi, '_')}.ics`;
+                // Show modal
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+            function closeEventModal() {
+                const modal = document.getElementById('eventModal');
+                modal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+            function createICSContent(event) {
+                const startDate = new Date(event.start);
+                const endDate = new Date(event.end);
+                // Format dates for ICS
+                const formatICSDate = (date) => {
+                    return date.toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
+                };
+                let icsContent = [
+                    'BEGIN:VCALENDAR',
+                    'VERSION:2.0',
+                    'PRODID:-//DJ Event Calendar//EN',
+                    'BEGIN:VEVENT',
+                    `UID:${event.id || Date.now()}@djcalendar.com`,
+                    `DTSTART:${formatICSDate(startDate)}`,
+                    `DTEND:${formatICSDate(endDate)}`,
+                    `SUMMARY:${event.title}`,
+                    event.location ? `LOCATION:${event.location}` : '',
+                    event.description ? `DESCRIPTION:${event.description.replace(/\n/g, '\\n')}` : '',
+                    'END:VEVENT',
+                    'END:VCALENDAR'
+                ].filter(line => line !== '').join('\r\n');
+                return icsContent;
+            }
+            // Close modal when clicking outside
+            document.addEventListener('click', function(e) {
+                const modal = document.getElementById('eventModal');
+                if (e.target === modal) {
+                    closeEventModal();
+                }
+            });
+            // Close modal with Escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    closeEventModal();
+                }
+            });
+            // Check if event is national (Germany) or international
+            function isNationalEvent(location) {
+                if (!location) return false;
+                const locationLower = location.toLowerCase();
+                const nationalKeywords = [
+                    'germany', 'deutschland', 'berlin', 'munich', 'frankfurt', 'hamburg', 'cologne', 'köln',
+                    'düsseldorf', 'stuttgart', 'dresden', 'leipzig', 'hannover', 'nürnberg', 'nuremberg',
+                    'bremen', 'duisburg', 'bochum', 'wuppertal', 'bielefeld', 'bonn', 'mannheim', 'karlsruhe',
+                    'wiesbaden', 'gelsenkirchen', 'münster', 'munster', 'augsburg', 'aachen', 'braunschweig',
+                    'krefeld', 'halle', 'kiel', 'magdeburg', 'freiburg', 'kassel', 'mainz', 'lübeck', 'lubeck',
+                    'erfurt', 'oberhausen', 'rostock', 'potsdam', 'oldenburg', 'würzburg', 'wurzburg', 'regensburg',
+                    'ingolstadt', 'wolfsburg', 'fürth', 'furth', 'ulm', 'heilbronn', 'pforzheim', 'offenbach',
+                    'bottrop', 'reutlingen', 'koblenz', 'bergisch gladbach', 'remscheid', 'jena', 'erlangen',
+                    'moers', 'siegen', 'hildesheim', 'salzgitter', 'cottbus', 'kaiserslautern', 'gütersloh', 'gutersloh',
+                    'schwerin', 'düren', 'duren', 'essen', 'dortmund', 'duisburg', 'essen', 'düsseldorf', 'dusseldorf'
+                ];
+                return nationalKeywords.some(keyword => locationLower.includes(keyword));
+            }
+            // Country flag detection function
+            function getCountryFlag(location) {
+                if (!location) return '🌍';
+                const locationLower = location.toLowerCase();
+                // Common country mappings
+                const countryFlags = {
+                    // Europe
+                    'netherlands': '🇳🇱',
+                    'holland': '🇳🇱',
+                    'amsterdam': '🇳🇱',
+                    'germany': '🇩🇪',
+                    'deutschland': '🇩🇪',
+                    'berlin': '🇩🇪',
+                    'munich': '🇩🇪',
+                    'frankfurt': '🇩🇪',
+                    'france': '🇫🇷',
+                    'paris': '🇫🇷',
+                    'lyon': '🇫🇷',
+                    'marseille': '🇫🇷',
+                    'spain': '🇪🇸',
+                    'madrid': '🇪🇸',
+                    'barcelona': '🇪🇸',
+                    'italy': '🇮🇹',
+                    'italia': '🇮🇹',
+                    'rome': '🇮🇹',
+                    'milan': '🇮🇹',
+                    'venice': '🇮🇹',
+                    'uk': '🇬🇧',
+                    'united kingdom': '🇬🇧',
+                    'england': '🇬🇧',
+                    'london': '🇬🇧',
+                    'manchester': '🇬🇧',
+                    'birmingham': '🇬🇧',
+                    'belgium': '🇧🇪',
+                    'brussels': '🇧🇪',
+                    'antwerp': '🇧🇪',
+                    'switzerland': '🇨🇭',
+                    'zurich': '🇨🇭',
+                    'geneva': '🇨🇭',
+                    'austria': '🇦🇹',
+                    'vienna': '🇦🇹',
+                    'salzburg': '🇦🇹',
+                    'poland': '🇵🇱',
+                    'warsaw': '🇵🇱',
+                    'krakow': '🇵🇱',
+                    'czech': '🇨🇿',
+                    'czech republic': '🇨🇿',
+                    'prague': '🇨🇿',
+                    'hungary': '🇭🇺',
+                    'budapest': '🇭🇺',
+                    'denmark': '🇩🇰',
+                    'copenhagen': '🇩🇰',
+                    'sweden': '🇸🇪',
+                    'stockholm': '🇸🇪',
+                    'norway': '🇳🇴',
+                    'oslo': '🇳🇴',
+                    'finland': '🇫🇮',
+                    'helsinki': '🇫🇮',
+                    'portugal': '🇵🇹',
+                    'lisbon': '🇵🇹',
+                    'porto': '🇵🇹',
+                    'greece': '🇬🇷',
+                    'athens': '🇬🇷',
+                    'thessaloniki': '🇬🇷',
+                    'ireland': '🇮🇪',
+                    'dublin': '🇮🇪',
+                    'cork': '🇮🇪',
+                    // North America
+                    'usa': '🇺🇸',
+                    'united states': '🇺🇸',
+                    'america': '🇺🇸',
+                    'new york': '🇺🇸',
+                    'los angeles': '🇺🇸',
+                    'chicago': '🇺🇸',
+                    'miami': '🇺🇸',
+                    'las vegas': '🇺🇸',
+                    'san francisco': '🇺🇸',
+                    'canada': '🇨🇦',
+                    'toronto': '🇨🇦',
+                    'montreal': '🇨🇦',
+                    'vancouver': '🇨🇦',
+                    'mexico': '🇲🇽',
+                    'mexico city': '🇲🇽',
+                    'guadalajara': '🇲🇽',
+                    // South America
+                    'brazil': '🇧🇷',
+                    'brasil': '🇧🇷',
+                    'sao paulo': '🇧🇷',
+                    'rio de janeiro': '🇧🇷',
+                    'argentina': '🇦🇷',
+                    'buenos aires': '🇦🇷',
+                    'colombia': '🇨🇴',
+                    'bogota': '🇨🇴',
+                    'chile': '🇨🇱',
+                    'santiago': '🇨🇱',
+                    'peru': '🇵🇪',
+                    'lima': '🇵🇪',
+                    // Asia
+                    'japan': '🇯🇵',
+                    'tokyo': '🇯🇵',
+                    'osaka': '🇯🇵',
+                    'kyoto': '🇯🇵',
+                    'china': '🇨🇳',
+                    'beijing': '🇨🇳',
+                    'shanghai': '🇨🇳',
+                    'south korea': '🇰🇷',
+                    'seoul': '🇰🇷',
+                    'singapore': '🇸🇬',
+                    'thailand': '🇹🇭',
+                    'bangkok': '🇹🇭',
+                    'india': '🇮🇳',
+                    'mumbai': '🇮🇳',
+                    'delhi': '🇮🇳',
+                    'bangalore': '🇮🇳',
+                    'indonesia': '🇮🇩',
+                    'jakarta': '🇮🇩',
+                    'bali': '🇮🇩',
+                    'malaysia': '🇲🇾',
+                    'kuala lumpur': '🇲🇾',
+                    'philippines': '🇵🇭',
+                    'manila': '🇵🇭',
+                    'vietnam': '🇻🇳',
+                    'ho chi minh': '🇻🇳',
+                    'hanoi': '🇻🇳',
+                    // Oceania
+                    'australia': '🇦🇺',
+                    'sydney': '🇦🇺',
+                    'melbourne': '🇦🇺',
+                    'brisbane': '🇦🇺',
+                    'perth': '🇦🇺',
+                    'new zealand': '🇳🇿',
+                    'auckland': '🇳🇿',
+                    'wellington': '🇳🇿',
+                    // Africa
+                    'south africa': '🇿🇦',
+                    'johannesburg': '🇿🇦',
+                    'cape town': '🇿🇦',
+                    'nigeria': '🇳🇬',
+                    'lagos': '🇳🇬',
+                    'egypt': '🇪🇬',
+                    'cairo': '🇪🇬',
+                    'kenya': '🇰🇪',
+                    'nairobi': '🇰🇪',
+                    'morocco': '🇲🇦',
+                    'casablanca': '🇲🇦',
+                    'marrakech': '🇲🇦',
+                    // Middle East
+                    'uae': '🇦🇪',
+                    'united arab emirates': '🇦🇪',
+                    'dubai': '🇦🇪',
+                    'abu dhabi': '🇦🇪',
+                    'israel': '🇮🇱',
+                    'tel aviv': '🇮🇱',
+                    'jerusalem': '🇮🇱',
+                    'turkey': '🇹🇷',
+                    'istanbul': '🇹🇷',
+                    'ankara': '🇹🇷',
+                    'qatar': '🇶🇦',
+                    'doha': '🇶🇦',
+                    'saudi arabia': '🇸🇦',
+                    'riyadh': '🇸🇦',
+                    'jeddah': '🇸🇦'
+                };
+                // Check for exact matches first
+                for (const [country, flag] of Object.entries(countryFlags)) {
+                    if (locationLower.includes(country)) {
+                        return flag;
+                    }
+                }
+                // Check for common country codes
+                const countryCodes = {
+                    'nl': '🇳🇱', 'de': '🇩🇪', 'fr': '🇫🇷', 'es': '🇪🇸', 'it': '🇮🇹', 'gb': '🇬🇧', 'uk': '🇬🇧',
+                    'be': '🇧🇪', 'ch': '🇨🇭', 'at': '🇦🇹', 'pl': '🇵🇱', 'cz': '🇨🇿', 'hu': '🇭🇺', 'dk': '🇩🇰',
+                    'se': '🇸🇪', 'no': '🇳🇴', 'fi': '🇫🇮', 'pt': '🇵🇹', 'gr': '🇬🇷', 'ie': '🇮🇪', 'us': '🇺🇸',
+                    'ca': '🇨🇦', 'mx': '🇲🇽', 'br': '🇧🇷', 'ar': '🇦🇷', 'co': '🇨🇴', 'cl': '🇨🇱', 'pe': '🇵🇪',
+                    'jp': '🇯🇵', 'cn': '🇨🇳', 'kr': '🇰🇷', 'sg': '🇸🇬', 'th': '🇹🇭', 'in': '🇮🇳', 'id': '🇮🇩',
+                    'my': '🇲🇾', 'ph': '🇵🇭', 'vn': '🇻🇳', 'au': '🇦🇺', 'nz': '🇳🇿', 'za': '🇿🇦', 'ng': '🇳🇬',
+                    'eg': '🇪🇬', 'ke': '🇰🇪', 'ma': '🇲🇦', 'ae': '🇦🇪', 'il': '🇮🇱', 'tr': '🇹🇷', 'qa': '🇶🇦', 'sa': '🇸🇦'
+                };
+                // Check for country codes in the location
+                for (const [code, flag] of Object.entries(countryCodes)) {
+                    if (locationLower.includes(code.toLowerCase())) {
+                        return flag;
+                    }
+                }
+                // Default to world flag if no match found
+                return '🌍';
+            }
+            // Make functions globally accessible
+            window.loadEvents = loadEvents;
+            window.displayEvents = displayEvents;
+            window.fetchGoogleCalendarEvents = fetchGoogleCalendarEvents;
+            window.showEventDetails = showEventDetails;
+            window.closeEventModal = closeEventModal;
+        </script>
+    </body>
+    </html>
